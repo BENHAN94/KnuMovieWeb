@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # myapp
+=======
+# knumovie
+>>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7
 
 A new Flutter project.
 
