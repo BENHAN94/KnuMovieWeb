@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/MyPage/MyPage.dart';
-import 'package:myapp/LandingPage/SignUp/SignUpPage.dart';
+import 'package:knumovie/LandingPage/MyPage/MyPage.dart';
+import 'package:knumovie/LandingPage/SignUp/SignUpPage.dart';
 
 import '../main.dart';
 

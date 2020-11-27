@@ -16,7 +16,7 @@ class API {
   //
 
   // 영화 제목으로 db에서 fetch
-  Future<List<Movie>> fetchMovies(String title,
+  Future<List<Movie>> selectMovies(String title,
       {String genre,
       String type,
       String region,

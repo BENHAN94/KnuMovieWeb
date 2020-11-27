@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/LandingPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/LandingPage/LandingPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,8 +25,8 @@ class MyHomePage extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/LandingPage.dart';
-import 'package:myapp/LandingPage/SignIn/SignInPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
-import 'package:myapp/main.dart';
+import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 import 'gender.dart';
 import 'input_field.dart';
 
@@ -25,6 +23,10 @@ class SignHome extends StatelessWidget {
 }
 
 class DesktopSignHome extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
+  final TextEditingController _mag3 = new TextEditingController();
+  final TextEditingController _mag4 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -117,7 +119,11 @@ class DesktopSignHome extends StatelessWidget {
                     const SizedBox(
                       height: 21.0,
                     ),
-                    InputField(label: "Username", content: "username"),
+                    InputField(
+                      label: "Username",
+                      content: "username",
+                      text: _mag,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -125,15 +131,27 @@ class DesktopSignHome extends StatelessWidget {
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Date of birth", content: "03-04-2000"),
+                    InputField(
+                      label: "Date of birth",
+                      content: "03-04-2000",
+                      text: _mag2,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Email", content: "anything@site.com"),
+                    InputField(
+                      label: "Email",
+                      content: "anything@site.com",
+                      text: _mag3,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Password", content: "********"),
+                    InputField(
+                      label: "Password",
+                      content: "********",
+                      text: _mag4,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -180,6 +198,10 @@ class DesktopSignHome extends StatelessWidget {
 }
 
 class TabletSignHome extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
+  final TextEditingController _mag3 = new TextEditingController();
+  final TextEditingController _mag4 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -272,7 +294,11 @@ class TabletSignHome extends StatelessWidget {
                     const SizedBox(
                       height: 21.0,
                     ),
-                    InputField(label: "Username", content: "username"),
+                    InputField(
+                      label: "Username",
+                      content: "username",
+                      text: _mag,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -280,15 +306,27 @@ class TabletSignHome extends StatelessWidget {
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Date of birth", content: "03-04-2000"),
+                    InputField(
+                      label: "Date of birth",
+                      content: "03-04-2000",
+                      text: _mag2,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Email", content: "anything@site.com"),
+                    InputField(
+                      label: "Email",
+                      content: "anything@site.com",
+                      text: _mag3,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Password", content: "********"),
+                    InputField(
+                      label: "Password",
+                      content: "********",
+                      text: _mag4,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -310,6 +348,10 @@ class TabletSignHome extends StatelessWidget {
                         FlatButton(
                           color: Colors.red,
                           onPressed: () {
+                            print(_mag.text +
+                                _mag2.text +
+                                _mag3.text +
+                                _mag4.text);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -335,6 +377,10 @@ class TabletSignHome extends StatelessWidget {
 }
 
 class MobileSignHome extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
+  final TextEditingController _mag3 = new TextEditingController();
+  final TextEditingController _mag4 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -364,7 +410,11 @@ class MobileSignHome extends StatelessWidget {
                 const SizedBox(
                   height: 21.0,
                 ),
-                InputField(label: "Username", content: "username"),
+                InputField(
+                  label: "Username",
+                  content: "username",
+                  text: _mag,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),
@@ -372,15 +422,27 @@ class MobileSignHome extends StatelessWidget {
                 SizedBox(
                   height: 20.0,
                 ),
-                InputField(label: "Date of birth", content: "03-04-2000"),
+                InputField(
+                  label: "Date of birth",
+                  content: "03-04-2000",
+                  text: _mag2,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),
-                InputField(label: "Email", content: "anything@site.com"),
+                InputField(
+                  label: "Email",
+                  content: "anything@site.com",
+                  text: _mag3,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),
-                InputField(label: "Password", content: "********"),
+                InputField(
+                  label: "Password",
+                  content: "********",
+                  text: _mag4,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),

@@ -300,7 +300,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 <<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.myapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 >>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7
@@ -436,7 +436,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 <<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.myapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 >>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7
@@ -467,7 +467,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 <<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.myapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 >>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7

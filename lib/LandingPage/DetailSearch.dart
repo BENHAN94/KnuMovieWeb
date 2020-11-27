@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/IsAdult.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/MovieType.dart';
-import 'package:myapp/LandingPage/SearchedMovie.dart';
-import 'package:myapp/LandingPage/SignUp/input_field.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/IsAdult.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/MovieType.dart';
+import 'package:knumovie/LandingPage/SearchedMovie.dart';
+import 'package:knumovie/LandingPage/SignUp/input_field.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 
 import 'MyPage/Admin/AdminRegistPage.dart';
 
@@ -14,8 +14,8 @@ class DetailSearch extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)

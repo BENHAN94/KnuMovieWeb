@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/AdminUpdatePage.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/IsAdult.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/MovieType.dart';
-import 'package:myapp/LandingPage/SignUp/input_field.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/AdminUpdatePage.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/IsAdult.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/MovieType.dart';
+import 'package:knumovie/LandingPage/SignUp/input_field.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 
 import '../../DetailSearch.dart';
 import '../../SearchedMovie.dart';
@@ -15,8 +15,8 @@ class AdminRegistFunction extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)
@@ -57,8 +57,7 @@ class DesktopAdminFunctions extends StatefulWidget {
 class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
-  String hintText = 'Search';
-  double height = 0.0;
+  var txt;
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -82,7 +81,7 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 100.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -154,246 +153,60 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
                     Stack(
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width / 3.0,
-                          height: 50.0,
-                          child: TextField(
-                            focusNode: _focus,
-                            controller: _mag,
-                            onSubmitted: _handleSubmitted,
-                            decoration: InputDecoration(
-                                hintText: hintText,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                filled: true,
-                                suffixIcon: IconButton(
-                                  onPressed: () => _mag.clear(),
-                                  icon: Icon(Icons.clear),
+                          margin: EdgeInsets.only(bottom: 50.0),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 65.0,
                                 ),
-                                prefixIcon: IconButton(
-                                    onPressed: () {
-                                      _handleSubmitted(_mag.text);
-                                    },
-                                    icon: Icon(Icons.search)),
-                                fillColor: Colors.white),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment(-1.0, 0.0),
-                          child: Container(
-                            margin: EdgeInsets.only(bottom: 50.0),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 65.0,
-                                  ),
-                                  InputField(
-                                      label: "Movie title",
-                                      content: "Harry Potter 2020"),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  MovieType(),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  IsAdult(),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      SizedBox(
-                                        width: 130.0,
-                                      ),
-                                      FlatButton(
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text("Cancel"),
-                                      ),
-                                      SizedBox(
-                                        height: 20.0,
-                                      ),
-                                      FlatButton(
-                                        color: Colors.red,
-                                        onPressed: () {},
-                                        child: Text(
-                                          "RegistMovie",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ]),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment(-0.8, 0.5),
-                          child: Container(
-                              margin: EdgeInsets.only(top: 53.0),
-                              color: Colors.white,
-                              width: 150,
-                              height: height,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.movie,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "All",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
+                                InputField(
+                                  label: "Movie title",
+                                  content: "Harry Potter 2020",
+                                  text: _mag,
+                                ),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                MovieType(),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                IsAdult(),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      width: 130.0,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.title,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Titles",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.tv,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Episodes",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.recent_actors,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Actors",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.image_search,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Detail",
-                                          )
-                                        ],
-                                      ),
+                                    FlatButton(
+                                      color: Colors.white,
                                       onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailSearch(),
-                                            ));
+                                        Navigator.pop(context);
                                       },
+                                      child: Text("Cancel"),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                ],
-                              )),
+                                    SizedBox(
+                                      height: 20.0,
+                                    ),
+                                    FlatButton(
+                                      color: Colors.red,
+                                      onPressed: () {
+                                        txt = _mag.text;
+                                        print(_mag.text);
+                                        setState(() {});
+                                      },
+                                      child: Text(
+                                        "RegistMovie",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ]),
                         ),
                       ],
                     ),
@@ -406,41 +219,6 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
       )
     ]);
   }
-
-  @override
-  void initState() {
-    super.initState();
-    _focus.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    debugPrint("Focus: " + _focus.hasFocus.toString());
-    if (_focus.hasFocus) {
-      hintText = '';
-      height = 255.0;
-    } else {
-      hintText = 'Search';
-      height = 0.0;
-    }
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _focus.dispose();
-    super.dispose();
-  }
-
-  void _handleSubmitted(String text) {
-    print(_mag.text.toString());
-    text = _mag.text;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
-        ));
-    _mag.clear();
-  }
 }
 
 class TabletAdminFunctions extends StatefulWidget {
@@ -451,8 +229,7 @@ class TabletAdminFunctions extends StatefulWidget {
 class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
-  String hintText = 'Search';
-  double height = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -476,7 +253,7 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 100.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -547,31 +324,6 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
                     ),
                     Stack(
                       children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width / 3.0,
-                          height: 50.0,
-                          child: TextField(
-                            focusNode: _focus,
-                            controller: _mag,
-                            onSubmitted: _handleSubmitted,
-                            decoration: InputDecoration(
-                                hintText: hintText,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                filled: true,
-                                suffixIcon: IconButton(
-                                  onPressed: () => _mag.clear(),
-                                  icon: Icon(Icons.clear),
-                                ),
-                                prefixIcon: IconButton(
-                                    onPressed: () {
-                                      _handleSubmitted(_mag.text);
-                                    },
-                                    icon: Icon(Icons.search)),
-                                fillColor: Colors.white),
-                          ),
-                        ),
                         Align(
                           alignment: Alignment(-1.0, 0.0),
                           child: Container(
@@ -625,170 +377,6 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
                                 ]),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment(-0.8, 0.5),
-                          child: Container(
-                              margin: EdgeInsets.only(top: 53.0),
-                              color: Colors.white,
-                              width: 150,
-                              height: height,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.movie,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "All",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.title,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Titles",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.tv,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Episodes",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.recent_actors,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Actors",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.image_search,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Detail",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailSearch(),
-                                            ));
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                ],
-                              )),
-                        ),
                       ],
                     ),
                   ],
@@ -800,41 +388,6 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
       )
     ]);
   }
-
-  @override
-  void initState() {
-    super.initState();
-    _focus.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    debugPrint("Focus: " + _focus.hasFocus.toString());
-    if (_focus.hasFocus) {
-      hintText = '';
-      height = 255.0;
-    } else {
-      hintText = 'Search';
-      height = 0.0;
-    }
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _focus.dispose();
-    super.dispose();
-  }
-
-  void _handleSubmitted(String text) {
-    print(_mag.toString());
-    text = _mag.text;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
-        ));
-    _mag.clear();
-  }
 }
 
 class MobileAdminFunctions extends StatefulWidget {
@@ -845,8 +398,7 @@ class MobileAdminFunctions extends StatefulWidget {
 class _MobileAdminFunctionsState extends State<MobileAdminFunctions> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
-  String hintText = 'Search';
-  double height = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -882,31 +434,6 @@ class _MobileAdminFunctionsState extends State<MobileAdminFunctions> {
                     ),
                     Stack(
                       children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width / 3.0,
-                          height: 50.0,
-                          child: TextField(
-                            focusNode: _focus,
-                            controller: _mag,
-                            onSubmitted: _handleSubmitted,
-                            decoration: InputDecoration(
-                                hintText: hintText,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                filled: true,
-                                suffixIcon: IconButton(
-                                  onPressed: () => _mag.clear(),
-                                  icon: Icon(Icons.clear),
-                                ),
-                                prefixIcon: IconButton(
-                                    onPressed: () {
-                                      _handleSubmitted(_mag.text);
-                                    },
-                                    icon: Icon(Icons.search)),
-                                fillColor: Colors.white),
-                          ),
-                        ),
                         Align(
                           alignment: Alignment(-1.0, 0.0),
                           child: Container(
@@ -975,170 +502,6 @@ class _MobileAdminFunctionsState extends State<MobileAdminFunctions> {
                                 ]),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment(-0.8, 0.5),
-                          child: Container(
-                              margin: EdgeInsets.only(top: 53.0),
-                              color: Colors.white,
-                              width: 150,
-                              height: height,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.movie,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "All",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.title,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Titles",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.tv,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Episodes",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.recent_actors,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Actors",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.image_search,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Detail",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailSearch(),
-                                            ));
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                ],
-                              )),
-                        ),
                       ],
                     ),
                   ],
@@ -1149,40 +512,5 @@ class _MobileAdminFunctionsState extends State<MobileAdminFunctions> {
         ),
       )
     ]);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _focus.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    debugPrint("Focus: " + _focus.hasFocus.toString());
-    if (_focus.hasFocus) {
-      hintText = '';
-      height = 255.0;
-    } else {
-      hintText = 'Search';
-      height = 0.0;
-    }
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _focus.dispose();
-    super.dispose();
-  }
-
-  void _handleSubmitted(String text) {
-    print(_mag.toString());
-    text = _mag.text;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
-        ));
-    _mag.clear();
   }
 }
