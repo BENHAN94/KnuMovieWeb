@@ -23,6 +23,8 @@ class SignIn extends StatelessWidget {
 }
 
 class DesktopSignIn extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -46,7 +48,7 @@ class DesktopSignIn extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 85.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -115,11 +117,19 @@ class DesktopSignIn extends StatelessWidget {
                     const SizedBox(
                       height: 100.0,
                     ),
-                    InputField(label: "Username", content: "username"),
+                    InputField(
+                      label: "Username",
+                      content: "username",
+                      text: _mag,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Password", content: "********"),
+                    InputField(
+                      label: "Password",
+                      content: "********",
+                      text: _mag2,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -164,6 +174,8 @@ class DesktopSignIn extends StatelessWidget {
 }
 
 class TabletSignIn extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -187,7 +199,7 @@ class TabletSignIn extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 85.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -256,11 +268,19 @@ class TabletSignIn extends StatelessWidget {
                     const SizedBox(
                       height: 100.0,
                     ),
-                    InputField(label: "Username", content: "username"),
+                    InputField(
+                      label: "Username",
+                      content: "username",
+                      text: _mag,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(label: "Password", content: "********"),
+                    InputField(
+                      label: "Password",
+                      content: "********",
+                      text: _mag2,
+                    ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -285,7 +305,9 @@ class TabletSignIn extends StatelessWidget {
                         ),
                         FlatButton(
                           color: Colors.red,
-                          onPressed: () {},
+                          onPressed: () {
+                            print(_mag.text + _mag2.text);
+                          },
                           child: Text(
                             "SignIn",
                             style: TextStyle(color: Colors.white),
@@ -305,6 +327,8 @@ class TabletSignIn extends StatelessWidget {
 }
 
 class MobileSignIn extends StatelessWidget {
+  final TextEditingController _mag = new TextEditingController();
+  final TextEditingController _mag2 = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -334,11 +358,19 @@ class MobileSignIn extends StatelessWidget {
                 const SizedBox(
                   height: 21.0,
                 ),
-                InputField(label: "Username", content: "username"),
+                InputField(
+                  label: "Username",
+                  content: "username",
+                  text: _mag,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),
-                InputField(label: "Password", content: "********"),
+                InputField(
+                  label: "Password",
+                  content: "********",
+                  text: _mag2,
+                ),
                 SizedBox(
                   height: 20.0,
                 ),

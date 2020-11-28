@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Gender extends StatelessWidget {
+  var gender = '';
+  Gender({this.gender});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       //제약조건에 따라 내용물 결정
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1200) {
-          return DesktopGender();
+          return DesktopGender(this.gender);
         } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
-          return DesktopGender();
+          return DesktopGender(this.gender);
         } else {
-          return MobileGender();
+          return MobileGender(this.gender);
         }
       },
     );
@@ -19,6 +21,8 @@ class Gender extends StatelessWidget {
 }
 
 class DesktopGender extends StatefulWidget {
+  DesktopGender(String gender);
+
   @override
   _DesktopGenderState createState() => _DesktopGenderState();
 }
@@ -27,6 +31,8 @@ class _DesktopGenderState extends State<DesktopGender> {
   int selected = 0;
   int red1 = 0;
   int red2 = 0;
+  var gen = '';
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -60,6 +66,7 @@ class _DesktopGenderState extends State<DesktopGender> {
             onPressed: () {
               if (selected == 0) {
                 selected = 1;
+                gen = "Male";
                 red2 = 0;
                 red1 = 0xFFF44336;
                 setState(() {});
@@ -88,6 +95,7 @@ class _DesktopGenderState extends State<DesktopGender> {
                 selected = 1;
                 red1 = 0;
                 red2 = 0xFFF44336;
+                gen = "Female";
                 setState(() {});
               } else {
                 selected = 0;
@@ -103,6 +111,8 @@ class _DesktopGenderState extends State<DesktopGender> {
 }
 
 class MobileGender extends StatefulWidget {
+  MobileGender(String gender);
+
   @override
   _MobileGenderState createState() => _MobileGenderState();
 }
@@ -111,6 +121,8 @@ class _MobileGenderState extends State<MobileGender> {
   int selected = 0;
   int red1 = 0;
   int red2 = 0;
+  var gen = '';
+  _MobileGenderState({this.gen});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -140,6 +152,8 @@ class _MobileGenderState extends State<MobileGender> {
                 selected = 1;
                 red2 = 0;
                 red1 = 0xFFF44336;
+                gen = "Male";
+
                 setState(() {});
               } else {
                 selected = 0;
@@ -159,6 +173,8 @@ class _MobileGenderState extends State<MobileGender> {
                 selected = 1;
                 red1 = 0;
                 red2 = 0xFFF44336;
+                gen = "Female";
+
                 setState(() {});
               } else {
                 selected = 0;

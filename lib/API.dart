@@ -19,7 +19,11 @@ class API {
   //
 
   // 영화 제목으로 db에서 fetch
+<<<<<<< HEAD
   Future<List<Movie>> selectMovie(String title,
+=======
+  Future<List<Movie>> selectMovies(String title,
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
       {String genre,
       String type,
       String region,

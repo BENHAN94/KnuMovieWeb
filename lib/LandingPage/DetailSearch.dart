@@ -14,8 +14,8 @@ class DetailSearch extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)

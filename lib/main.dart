@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
+<<<<<<< HEAD
 import 'API.dart';
 import 'model/account.dart';
 import 'model/actor.dart';
@@ -17,6 +18,8 @@ void main() async {
   var actor = await factor;
   print(actor[0].name);
   print(actor[0].birthYear);
+=======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 
   //runApp(knumovie());
 }

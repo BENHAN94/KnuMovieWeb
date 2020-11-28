@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:knumovie/Navbar/Navbar.dart';
+=======
+import 'package:knumovie/LandingPage/SelectedMovie.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
+import 'package:knumovie/API.dart';
+import '../API.dart';
+import '../model/movie.dart';
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 
 class SearchedMovie extends StatelessWidget {
   var text;
@@ -13,8 +21,8 @@ class SearchedMovie extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)
@@ -43,18 +51,7 @@ class SearchedMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      //제약조건에 따라 내용물 결정
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200) {
-          return DesktopSearchedMovie(str);
-        } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
-          return TabletSearchedMovie(str);
-        } else {
-          return MobileSearchedMovie(str);
-        }
-      },
-    );
+    return DesktopSearchedMovie(str);
   }
 }
 
@@ -64,91 +61,34 @@ class DesktopSearchedMovie extends StatelessWidget {
   DesktopSearchedMovie(str) {
     text = str;
   }
+  final api = API();
 
-  List<int> items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          for (var item in items)
-            Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 100.0),
-                    Container(width: 50.0, height: 50.0, color: Colors.red),
-                    SizedBox(width: 20.0),
-                    FlatButton(
-                        onPressed: () {},
-                        child: Text(item.toString() + "$text Movie title!!!"))
-                  ],
-                )),
-        ],
-      ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class TabletSearchedMovie extends StatelessWidget {
-  var text;
-  TabletSearchedMovie(str) {
-    text = str;
-  }
-
-  List<int> items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          for (var item in items)
-            Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 100.0),
-                    Container(width: 50.0, height: 50.0, color: Colors.red),
-                    SizedBox(width: 20.0),
-                    FlatButton(
-                        onPressed: () {},
-                        child: Text(item.toString() + "$text Movie title!!!"))
-                  ],
-                ))
-        ],
-      ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class MobileSearchedMovie extends StatelessWidget {
-  var text;
-  MobileSearchedMovie(str) {
-    text = str;
-  }
-  List<int> items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          for (var item in items)
-            Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 100.0),
-                    Container(width: 50.0, height: 50.0, color: Colors.red),
-                    SizedBox(width: 20.0),
-                    FlatButton(
-                        onPressed: () {},
-                        child: Text(item.toString() + "$text Movie title!!!"))
-                  ],
-                ))
-        ],
-      ),
-    );
+    return FutureBuilder(
+        future: api.selectMovies(text),
+        builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
+          if (snapshot.hasData == false) {
+            //   return Container();
+            // } else {
+            return Container(
+                height: MediaQuery.of(context).size.height / 1.5,
+                child: GridView.count(
+                    crossAxisCount: 3,
+                    children: List.generate(10, (index) {
+                      return Hero(
+                          tag: 'postImage$index',
+                          child: FlatButton(
+                              child: Image.asset('assets/images/knu.png'),
+                              onPressed: () {
+                                print(index);
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return DetailScreen(text, index);
+                                }));
+                              }));
+                    })));
+          }
+        });
   }
 }

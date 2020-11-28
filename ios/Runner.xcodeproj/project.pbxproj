@@ -299,6 +299,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
+=======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -431,6 +437,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
+=======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -458,6 +470,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
+=======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.knumovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";

@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 # knumovie
+=======
+<<<<<<< HEAD
+
+# knumovie
+
+=======
+
+# knumovie
+
+> > > > > > > 0d0a87455b84dbd8122837c86bbbcb45238863d7
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 
 A new Flutter project.
 

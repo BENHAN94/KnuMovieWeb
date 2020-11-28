@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:knumovie/LandingPage/MyPage/Admin/AdminUpdatePage.dart';
+=======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 import 'package:knumovie/LandingPage/MyPage/Admin/IsAdult.dart';
 import 'package:knumovie/LandingPage/MyPage/Admin/MovieType.dart';
 import 'package:knumovie/LandingPage/SignUp/input_field.dart';
@@ -16,8 +19,8 @@ class AdminUpdateFunction extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)
@@ -83,7 +86,7 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 200.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -244,7 +247,9 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
                                       ),
                                       FlatButton(
                                         color: Colors.red,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          print("");
+                                        },
                                         child: Text(
                                           "UpdateMovie",
                                           style: TextStyle(color: Colors.white),
@@ -500,7 +505,7 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 200.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(

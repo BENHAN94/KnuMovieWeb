@@ -13,8 +13,8 @@ class AccountInfo extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromRGBO(219, 32, 39, 1.0),
               Color.fromRGBO(255, 207, 209, 1.0)
@@ -71,7 +71,7 @@ class DesktopAccountInfos extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 185.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -230,7 +230,7 @@ class TabletAccountInfos extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 185.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
