@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/LandingPage.dart';
-import 'package:myapp/LandingPage/SignIn/SignInPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
-import 'package:myapp/main.dart';
+import 'package:knumovie/LandingPage/LandingPage.dart';
+import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
+import 'package:knumovie/main.dart';
 import 'gender.dart';
 import 'input_field.dart';
 

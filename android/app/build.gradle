@@ -39,7 +39,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
 <<<<<<< HEAD
-        applicationId "com.example.myapp"
+        applicationId "com.example.knumovie"
 =======
         applicationId "com.example.knumovie"
 >>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7

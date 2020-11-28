@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/SignUp/SignUpPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
-import 'package:myapp/main.dart';
+import 'package:knumovie/LandingPage/SignUp/SignUpPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
+import 'package:knumovie/main.dart';
 import '../SignUp/input_field.dart';
 
 class SignIn extends StatelessWidget {

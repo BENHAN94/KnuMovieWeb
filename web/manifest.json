@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
-    "name": "myapp",
-    "short_name": "myapp",
-=======
     "name": "knumovie",
     "short_name": "knumovie",
->>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

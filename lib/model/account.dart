@@ -1,6 +1,7 @@
 class Account {
   Account(
-      {this.sid,
+      {this.email,
+      this.sid,
       this.lastName,
       this.sex,
       this.password,
@@ -19,9 +20,11 @@ class Account {
   final String password;
   final String job;
   final String phone;
+  final String email;
 
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
+        email: json['email_add'] as String,
         sid: json['sid'] as int,
         lastName: json['last_name'] as String,
         firstName: json['first_name'] as String,

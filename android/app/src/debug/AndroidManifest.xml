@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 <<<<<<< HEAD
-    package="com.example.myapp">
+    package="com.example.knumovie">
 =======
     package="com.example.knumovie">
 >>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7

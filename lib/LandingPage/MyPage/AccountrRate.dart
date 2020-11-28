@@ -1,8 +1,8 @@
 import 'AccountInfo.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/SignUp/gender.dart';
-import 'package:myapp/LandingPage/SignUp/input_field.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/LandingPage/SignUp/gender.dart';
+import 'package:knumovie/LandingPage/SignUp/input_field.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 
 class RatePage extends StatefulWidget {
   @override

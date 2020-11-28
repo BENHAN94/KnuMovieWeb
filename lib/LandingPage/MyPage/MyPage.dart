@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/MyPage/AccountInfo.dart';
-import 'package:myapp/LandingPage/MyPage/Admin/AdminRegistPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/LandingPage/MyPage/AccountInfo.dart';
+import 'package:knumovie/LandingPage/MyPage/Admin/AdminRegistPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 import 'MyMovie.dart';
 
 class MyPage extends StatelessWidget {

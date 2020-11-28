@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/DetailSearch.dart';
-import 'package:myapp/LandingPage/SearchedMovie.dart';
+import 'package:knumovie/LandingPage/DetailSearch.dart';
+import 'package:knumovie/LandingPage/SearchedMovie.dart';
 
 class LandingPage extends StatefulWidget {
   @override

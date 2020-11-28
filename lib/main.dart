@@ -1,12 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:myapp/LandingPage/LandingPage.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'dart:io';
 
-void main() {
-  runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:knumovie/LandingPage/LandingPage.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
+import 'API.dart';
+import 'model/account.dart';
+import 'model/actor.dart';
+import 'model/genre.dart';
+import 'model/log.dart';
+import 'model/movie.dart';
+
+void main() async {
+  final api = API();
+
+  Future<List<Actor>> factor = api.selectActor(name: "brad");
+  var actor = await factor;
+  print(actor[0].name);
+  print(actor[0].birthYear);
+
+  //runApp(knumovie());
 }
 
-class MyApp extends StatelessWidget {
+class knumovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,11 +40,11 @@ class MyHomePage extends StatelessWidget {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
-              Color.fromRGBO(219, 32, 39, 1.0),
-              Color.fromRGBO(255, 207, 209, 1.0)
+              Color.fromRGBO(219, 32, 39, 0.9),
+              Color.fromRGBO(219, 100, 100, 0.7)
             ]),
       ),
       child: Column(

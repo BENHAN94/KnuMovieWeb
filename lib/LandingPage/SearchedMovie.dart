@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Navbar/Navbar.dart';
+import 'package:knumovie/Navbar/Navbar.dart';
 
 class SearchedMovie extends StatelessWidget {
   var text;
