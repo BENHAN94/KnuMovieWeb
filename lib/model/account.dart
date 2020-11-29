@@ -32,8 +32,9 @@ class Account {
         firstName: json['first_name'] as String,
         sex: json['sex'] as String,
         address: json['address'] as String,
-        birthday: json['start_year'] as String,
-        password: json['end_year'] as String,
-        job: json['genre'] as String);
+        birthday: json['birthday'] as String,
+        password: json['password'] as String,
+        phone: json['phone'] as String,
+        job: json['job'] as String);
   }
 }

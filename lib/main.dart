@@ -4,18 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'API.dart';
-import 'model/account.dart';
-import 'model/actor.dart';
-import 'model/genre.dart';
-import 'model/log.dart';
-import 'model/movie.dart';
 
 void main() async {
   final api = API();
 
-  Future<List<Movie>> fmovies = api.selectMovie("", actor: "brad pitt");
-  final movies = await fmovies;
-  print(movies[0].postImage);
+  final fmovie = api.crudMovie(mid: "1684", region: "en");
+  final movie = await fmovie;
+  print(movie.region);
   //runApp(knumovie());
 }
 

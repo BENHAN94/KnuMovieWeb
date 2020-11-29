@@ -115,7 +115,7 @@ class DesktopSelectedMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: api.selectMovie(text),
+        future: api.selectMovie(1, title: text),
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData == false) {
             return Container();

@@ -20,8 +20,9 @@ class API {
   //
 
   // 영화 제목으로 db에서 fetch
-  Future<List<Movie>> selectMovie(String title,
-      {String genre,
+  Future<List<Movie>> selectMovie(int uid,
+      {String title,
+      String genre,
       String type,
       String region,
       int runningTime,
@@ -32,8 +33,14 @@ class API {
       int minEndYear,
       int maxEndYear,
       String actor,
-      String director}) async {
-    var movieURL = _baseURL + "movie?title=" + title;
+      String director,
+      String isAdmin}) async {
+    var movieURL = _baseURL + "movie?uid=" + uid.toString();
+    if (title == null) {
+      movieURL += "&title=any";
+    } else {
+      movieURL += "&title=" + title;
+    }
     if (genre != null) {
       movieURL += "&genre=" + genre;
     }
@@ -60,6 +67,12 @@ class API {
     }
     if (actor != null) {
       movieURL += "&actor=" + actor;
+    }
+    if (director != null) {
+      movieURL += "&director=" + director;
+    }
+    if (isAdmin != null) {
+      movieURL += "&is_admin=" + isAdmin;
     }
     final response = await _client.get(movieURL);
     // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합
@@ -287,12 +300,12 @@ class API {
       },
     );
     final jsonResponse = json.decode(response.body);
-    Account account = new Account.fromJson(jsonResponse[0]);
+    Account account = new Account.fromJson(jsonResponse);
     return account;
   }
 
   //회원탈퇴
-  Future<bool> witdraw(String email) async {
+  Future<bool> withdraw(String email) async {
     final updateURL = _baseURL + "withdraw";
     http.Response response = await http.post(
       updateURL,
