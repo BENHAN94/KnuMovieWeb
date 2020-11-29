@@ -7,8 +7,8 @@ class Movie {
       this.isAdult,
       this.runningTime,
       this.startYear,
-      this.genre,
-      this.region});
+      this.region,
+      this.director});
   final int movieId;
   final String originalTitle;
   final String postImage;
@@ -19,17 +19,18 @@ class Movie {
   final String region;
   List<String> genre;
   List<String> actor;
+  final String director;
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      movieId: json['movie_id'] as int,
-      originalTitle: json['original_title'] as String,
-      postImage: json['post_image'] as String,
-      runningTime: json['running_time'] as int,
-      startYear: json['start_year'] as String,
-      endYear: json['end_year'] as String,
-      isAdult: json['is_adult'] as bool,
-      region: json['region'] as String,
-    );
+        movieId: json['movie_id'] as int,
+        originalTitle: json['original_title'] as String,
+        postImage: json['post_image'] as String,
+        runningTime: json['running_time'] as int,
+        startYear: json['start_year'] as String,
+        endYear: json['end_year'] as String,
+        isAdult: json['is_adult'] as bool,
+        region: json['region'] as String,
+        director: json['name'] as String);
   }
 }

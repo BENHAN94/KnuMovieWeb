@@ -9,7 +9,8 @@ class Account {
       this.address,
       this.birthday,
       this.firstName,
-      this.phone});
+      this.phone,
+      this.isAdmin});
 
   final int sid;
   final String lastName;
@@ -21,6 +22,7 @@ class Account {
   final String job;
   final String phone;
   final String email;
+  final bool isAdmin;
 
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(

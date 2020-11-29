@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
-<<<<<<< HEAD
 import 'API.dart';
 import 'model/account.dart';
 import 'model/actor.dart';
@@ -14,17 +13,13 @@ import 'model/movie.dart';
 void main() async {
   final api = API();
 
-  Future<List<Actor>> factor = api.selectActor(name: "brad");
-  var actor = await factor;
-  print(actor[0].name);
-  print(actor[0].birthYear);
-=======
->>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
-
+  Future<List<Movie>> fmovies = api.selectMovie("", actor: "brad pitt");
+  final movies = await fmovies;
+  print(movies[0].postImage);
   //runApp(knumovie());
 }
 
-class knumovie extends StatelessWidget {
+class KnuMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:knumovie/model/director.dart';
 import 'package:knumovie/model/movie.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,11 +20,7 @@ class API {
   //
 
   // 영화 제목으로 db에서 fetch
-<<<<<<< HEAD
   Future<List<Movie>> selectMovie(String title,
-=======
-  Future<List<Movie>> selectMovies(String title,
->>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
       {String genre,
       String type,
       String region,
@@ -34,7 +31,8 @@ class API {
       int maxStartYear,
       int minEndYear,
       int maxEndYear,
-      String actor}) async {
+      String actor,
+      String director}) async {
     var movieURL = _baseURL + "movie?title=" + title;
     if (genre != null) {
       movieURL += "&genre=" + genre;
@@ -87,7 +85,8 @@ class API {
       String isAdult = "null",
       String mode = "null",
       String mid = "null",
-      String image = "null"}) async {
+      String image = "null",
+      String did = "null"}) async {
     final updateURL = _baseURL + "movie/update";
     final genreURL = _baseURL + "movie/genre";
     final actorURL = _baseURL + "movie/actor";
@@ -108,7 +107,8 @@ class API {
         'mid': mid,
         'running_time': runningTime,
         'region': region,
-        'post_image': image
+        'post_image': image,
+        'did': did
       },
     );
 
@@ -205,10 +205,32 @@ class API {
     return compute(parseActor, resGenre.body);
   }
 
+  // 감독 선택
+
+  Future<List<Director>> selectDirector({String name}) async {
+    final genreURL = _baseURL + "director/select";
+    if (name == null) name = "";
+
+    http.Response resGenre = await http.post(
+      genreURL,
+      headers: <String, String>{
+        'Content_Type': 'application/x-www-form-urlencoded',
+      },
+      body: <String, String>{'director': name},
+    );
+
+    List<Director> parseActor(String responseBody) {
+      final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+      return parsed.map<Director>((json) => Director.fromJson(json)).toList();
+    }
+
+    return compute(parseActor, resGenre.body);
+  }
 /* 회원 관리 ===================================================================== */
 //
 //
 
+  //회원가입
   Future<Account> signup(
       String email, String password, String fname, String lname) async {
     final loginURL = _baseURL + "signup";
@@ -234,6 +256,7 @@ class API {
     }
   }
 
+  // 로그인
   Future<Account> signin(String email, String password) async {
     final loginURL = _baseURL + "signin";
     final response = await http.post(
@@ -248,6 +271,7 @@ class API {
     return account;
   }
 
+  // 회원 정보 수정
   Future<Account> updateAccount(
       String email, String column, String value) async {
     final updateURL = _baseURL + "account";
@@ -267,6 +291,7 @@ class API {
     return account;
   }
 
+  //회원탈퇴
   Future<bool> witdraw(String email) async {
     final updateURL = _baseURL + "withdraw";
     http.Response response = await http.post(
@@ -280,6 +305,7 @@ class API {
     return success;
   }
 
+  // 평가하기
   Future<bool> rating(String uid, String mid, String rating) async {
     final updateURL = _baseURL + "rating";
     http.Response response = await http.post(
@@ -297,6 +323,7 @@ class API {
     return success;
   }
 
+  // 평가 내역 확인
   Future<List<Log>> ratingLog({String email}) async {
     final updateURL = _baseURL + "rating/log";
     String email_add;
@@ -320,5 +347,19 @@ class API {
     }
 
     return compute(_parseLog, response.body);
+  }
+
+  // 어드민 체크
+  Future<bool> isAdmin(int uid) async {
+    final adminURL = _baseURL + "admin";
+    final response = await http.post(
+      adminURL,
+      headers: <String, String>{
+        'Content_Type': 'application/x-www-form-urlencoded',
+      },
+      body: <String, String>{'uid': uid.toString()},
+    );
+    bool isAdmin = response.body == "True" ? true : false;
+    return isAdmin;
   }
 }

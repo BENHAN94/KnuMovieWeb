@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:knumovie/LandingPage/MyPage/Admin/AdminUpdatePage.dart';
-=======
->>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 import 'package:knumovie/LandingPage/MyPage/Admin/IsAdult.dart';
 import 'package:knumovie/LandingPage/MyPage/Admin/MovieType.dart';
 import 'package:knumovie/LandingPage/SignUp/input_field.dart';

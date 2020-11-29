@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
-import 'package:knumovie/main.dart';
-=======
-import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
-import 'package:knumovie/Navbar/Navbar.dart';
->>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 import 'gender.dart';
 import 'input_field.dart';
 

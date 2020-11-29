@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:knumovie/Navbar/Navbar.dart';
-=======
 import 'package:knumovie/LandingPage/SelectedMovie.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'package:knumovie/API.dart';
 import '../API.dart';
 import '../model/movie.dart';
->>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 
 class SearchedMovie extends StatelessWidget {
   var text;
@@ -66,7 +62,7 @@ class DesktopSearchedMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: api.selectMovies(text),
+        future: api.selectMovie(text),
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData == false) {
             //   return Container();
