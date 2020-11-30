@@ -17,7 +17,7 @@ class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
-  String text = 'ani';
+  String text = 'a';
   int mid;
   String hintText = '';
   double height = 0.0;
@@ -57,8 +57,16 @@ class _LandingPageState extends State<LandingPage> {
                                 width: 500,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(3.0, 3.0),
+                                      blurRadius: 3.0,
+                                      color: Colors.black45,
+                                    )
+                                  ],
+                                ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -118,23 +126,29 @@ class _LandingPageState extends State<LandingPage> {
                             padding: EdgeInsets.only(top: 70.0),
                             child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10.0)
-                                  boxShadow: ,
+                                  color: Colors.red[200],
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(3.0, 3.0),
+                                      blurRadius: 3.0,
+                                      color: Colors.black45,
+                                    )
+                                  ],
                                 ),
                                 height:
-                                    MediaQuery.of(context).size.height / 1.3,
+                                    MediaQuery.of(context).size.height / 1.4,
                                 child: GridView.count(
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 2.5 / 4.3,
+                                    crossAxisCount: 4,
+                                    childAspectRatio: 3 / 4.3,
                                     children: List.generate(
                                         snapshot.data.length, (index) {
                                       return Padding(
-                                          padding: EdgeInsets.only(top: 20.0),
+                                          padding: EdgeInsets.all(5.0),
                                           child: Hero(
                                               tag: 'postImage$index',
                                               child: RaisedButton(
-                                                  color: Colors.white,
+                                                  color: Colors.red[100],
                                                   splashColor: Colors.white,
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:
