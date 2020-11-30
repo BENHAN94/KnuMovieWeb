@@ -127,7 +127,7 @@ class MobileNavbar extends StatelessWidget {
                   shadows: <Shadow>[
                     Shadow(
                       offset: Offset(2.0, 2.0),
-                      blurRadius: 1.0,
+                      blurRadius: 1.5,
                       color: Colors.black45,
                     ),
                   ]),
