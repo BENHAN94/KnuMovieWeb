@@ -69,6 +69,9 @@ class DetailScreen extends StatelessWidget {
                                               "StartYear: " +
                                               snapshot.data.startYear +
                                               "\n" +
+                                              "Director: " +
+                                              snapshot.data.director +
+                                              "\n" +
                                               "Actor: " +
                                               snapshot.data.actor.toString() +
                                               "\n" +
@@ -89,11 +92,7 @@ class DetailScreen extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    GridView.count(
-                                      crossAxisCount: 3,
-                                    )
-                                  ],
+                                  children: <Widget>[Container()],
                                 )
                               ]),
                             ),
@@ -101,5 +100,24 @@ class DetailScreen extends StatelessWidget {
                     ]));
               }
             }));
+  }
+}
+
+class DirectImg extends StatefulWidget {
+  @override
+  _DirectImgState createState() => _DirectImgState();
+}
+
+class _DirectImgState extends State<DirectImg> {
+  final api = API();
+  String name = '';
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: api.selectDirector(),
+            builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
+
+      builder: BuildContext(),
+    );
   }
 }
