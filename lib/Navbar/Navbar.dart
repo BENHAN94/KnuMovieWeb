@@ -11,9 +11,9 @@ class Navbar extends StatelessWidget {
     return LayoutBuilder(
       //제약조건에 따라 내용물 결정
       builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200) {
+        if (constraints.maxWidth >= 1300) {
           return DesktopNavbar();
-        } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
+        } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1300) {
           return DesktopNavbar();
         } else {
           return MobileNavbar();
@@ -35,12 +35,13 @@ class DesktopNavbar extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 "assets/images/knu.png",
-                width: 200,
-                height: 80,
+                width: 150,
+                height: 40,
               ),
               Row(
                 children: <Widget>[
                   RaisedButton(
+                      color: Colors.red[300],
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -49,12 +50,13 @@ class DesktopNavbar extends StatelessWidget {
                       },
                       child: Text(
                         "Home",
-                        style: TextStyle(color: Colors.white, fontSize: 30.0),
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
                       )),
                   SizedBox(
                     width: 30,
                   ),
                   RaisedButton(
+                      color: Colors.red[300],
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -64,12 +66,13 @@ class DesktopNavbar extends StatelessWidget {
                       },
                       child: Text(
                         "Sign In/Up",
-                        style: TextStyle(color: Colors.white, fontSize: 24.0),
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
                       )),
                   SizedBox(
                     width: 30,
                   ),
                   RaisedButton(
+                      color: Colors.red[300],
                       onPressed: () {
                         if (true) {
                           Navigator.push(
@@ -82,9 +85,8 @@ class DesktopNavbar extends StatelessWidget {
                               child: AlertDialog(
                                 title: Text("로그인 하셨나요?"),
                                 actions: <Widget>[
-                                  OutlineButton(
+                                  RaisedButton(
                                     child: Text("Close"),
-                                    borderSide: BorderSide.none,
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
@@ -95,7 +97,7 @@ class DesktopNavbar extends StatelessWidget {
                       },
                       child: Text(
                         "My Page",
-                        style: TextStyle(color: Colors.white, fontSize: 24.0),
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
                       )),
                   SizedBox(
                     width: 30,
@@ -112,12 +114,12 @@ class MobileNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 40),
       child: Container(
         child: Column(
           children: <Widget>[
             Text(
-              "Knu Movie",
+              "KNU Movie",
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -145,6 +147,7 @@ class MobileNavbar extends StatelessWidget {
                       width: 30,
                     ),
                     RaisedButton(
+                        color: Colors.red[300],
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -160,6 +163,7 @@ class MobileNavbar extends StatelessWidget {
                       width: 30,
                     ),
                     RaisedButton(
+                        color: Colors.red[300],
                         onPressed: () {
                           Navigator.push(
                               context,
