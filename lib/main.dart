@@ -1,12 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
+import 'API.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  final api = API();
+
+  final fmovie = api.crudMovie(mid: "1684", region: "en");
+  final movie = await fmovie;
+  print(movie.region);
+  //runApp(knumovie());
 }
 
-class MyApp extends StatelessWidget {
+class KnuMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +36,8 @@ class MyHomePage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromRGBO(219, 32, 39, 1.0),
-              Color.fromRGBO(255, 207, 209, 1.0)
+              Color.fromRGBO(219, 32, 39, 0.9),
+              Color.fromRGBO(219, 100, 100, 0.7)
             ]),
       ),
       child: Column(

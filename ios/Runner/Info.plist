@@ -12,10 +12,12 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 	<string>knumovie</string>
 =======
+>>>>>>> 28f4314ae93e3fcdab159d709539fcd943e3e9c6
 	<string>knumovie</string>
->>>>>>> 0d0a87455b84dbd8122837c86bbbcb45238863d7
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
