@@ -65,8 +65,8 @@ class DesktopSearchedMovie extends StatelessWidget {
         future: api.selectMovies(text),
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData == false) {
-            //   return Container();
-            // } else {
+            return Container();
+          } else {
             return Container(
                 height: MediaQuery.of(context).size.height / 1.5,
                 child: GridView.count(
