@@ -35,6 +35,7 @@ class API {
       String actor,
       String director,
       String isAdmin}) async {
+    /// uid는 필수로 입력
     var movieURL = _baseURL + "movie?uid=" + uid.toString();
     if (title == null) {
       movieURL += "&title=any";

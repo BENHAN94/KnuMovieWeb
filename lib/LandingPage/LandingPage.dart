@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:knumovie/API.dart';
 import 'package:knumovie/LandingPage/DetailSearch.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
+import 'package:knumovie/model/movie.dart';
+
+import 'SearchedMovie.dart';
+import 'SelectedMovie.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -10,237 +15,296 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
-  String hintText = 'Search';
+  final api = API();
+  String text = 'ani';
+  int mid;
+  String hintText = '';
   double height = 0.0;
   List<Widget> pageChildren(double width) {
     return <Widget>[
-      Container(
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "KNU Movies",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40.0,
-                  color: Colors.white),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                "최선을 다해 영화를 한땀한땀 만들었습니다",
-                style: TextStyle(fontSize: 16.0, color: Colors.white),
-              ),
-            ),
-            Stack(
-              children: <Widget>[
-                Container(
-                  width: width,
-                  height: 55.0,
-                  child: Center(
-                    child: TextField(
-                      focusNode: _focus,
-                      controller: _mag,
-                      onSubmitted: _handleSubmitted,
-                      decoration: InputDecoration(
-                          hintText: hintText,
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15.0)),
-                          filled: true,
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              _mag.clear();
-                            },
-                            icon: Icon(Icons.clear),
-                          ),
-                          prefixIcon: IconButton(
-                              onPressed: () {
-                                _handleSubmitted(_mag.text);
-                              },
-                              icon: Icon(Icons.search)),
-                          fillColor: Colors.white),
+      FutureBuilder(
+          future: api.selectMovie(1, title: text),
+          builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
+            if (snapshot.hasData == false) {
+              return Container();
+            } else {
+              return Container(
+                width: width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "KNU Movies",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40.0,
+                          color: Colors.white),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    ),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          width: width,
+                          height: 55.0,
+                          child: Center(
+                            child: TextField(
+                              focusNode: _focus,
+                              controller: _mag,
+                              onSubmitted: _handleSubmitted,
+                              decoration: InputDecoration(
+                                  hintText: hintText,
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.red, width: 0),
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 0),
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                  filled: true,
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      _mag.clear();
+                                    },
+                                    icon: Icon(Icons.clear),
+                                  ),
+                                  prefixIcon: IconButton(
+                                      onPressed: () {
+                                        _handleSubmitted(_mag.text);
+                                      },
+                                      icon: Icon(Icons.search)),
+                                  fillColor: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Align(
+                            alignment: Alignment(1.0, 1.0),
+                            child: Padding(
+                                padding: EdgeInsets.only(top: 100.0),
+                                child: Container(
+                                    decoration:
+                                        BoxDecoration(color: Colors.white),
+                                    height: MediaQuery.of(context).size.height /
+                                        1.7,
+                                    child: GridView.count(
+                                        crossAxisCount: 3,
+                                        childAspectRatio: 3 / 4,
+                                        children: List.generate(
+                                            snapshot.data.length, (index) {
+                                          return Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 20.0),
+                                              child: Hero(
+                                                  tag: 'postImage$index',
+                                                  child: RaisedButton(
+                                                      color: Colors.white,
+                                                      splashColor: Colors.white,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                              side: BorderSide
+                                                                  .none),
+                                                      child: Image.network(
+                                                        snapshot.data[index]
+                                                            .postImage,
+                                                      ),
+                                                      onPressed: () {
+                                                        print(text);
+
+                                                        print(snapshot
+                                                            .data[index]
+                                                            .postImage);
+                                                        print(index);
+                                                        Navigator.push(context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) {
+                                                          return DetailScreen(
+                                                              snapshot
+                                                                  .data[index]
+                                                                  .movieId,
+                                                              index);
+                                                        }));
+                                                      })));
+                                        }))))),
+                        Align(
+                          alignment: Alignment(-0.8, 0.5),
+                          child: Container(
+                              margin: EdgeInsets.only(top: 53.0),
+                              color: Colors.white,
+                              width: 150,
+                              height: height,
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    color: Colors.red[200],
+                                    width: 150,
+                                    height: 50,
+                                    child: OutlineButton(
+                                      borderSide: BorderSide.none,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          Icon(
+                                            Icons.movie,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 30.0,
+                                          ),
+                                          Text(
+                                            "All",
+                                          )
+                                        ],
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Container(
+                                    color: Colors.red[200],
+                                    width: 150,
+                                    height: 50,
+                                    child: OutlineButton(
+                                      borderSide: BorderSide.none,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          Icon(
+                                            Icons.title,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 30.0,
+                                          ),
+                                          Text(
+                                            "Titles",
+                                          )
+                                        ],
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Container(
+                                    color: Colors.red[200],
+                                    width: 150,
+                                    height: 50,
+                                    child: OutlineButton(
+                                      borderSide: BorderSide.none,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          Icon(
+                                            Icons.tv,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 30.0,
+                                          ),
+                                          Text(
+                                            "Episodes",
+                                          )
+                                        ],
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Container(
+                                    color: Colors.red[200],
+                                    width: 150,
+                                    height: 50,
+                                    child: OutlineButton(
+                                      borderSide: BorderSide.none,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          Icon(
+                                            Icons.recent_actors,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 30.0,
+                                          ),
+                                          Text(
+                                            "Actors",
+                                          )
+                                        ],
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Container(
+                                    color: Colors.red[200],
+                                    width: 150,
+                                    height: 50,
+                                    child: OutlineButton(
+                                      borderSide: BorderSide.none,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          Icon(
+                                            Icons.image_search,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 30.0,
+                                          ),
+                                          Text(
+                                            "Detail",
+                                          )
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailSearch(),
+                                            ));
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Align(
-                  alignment: Alignment(1.0, 1.0),
-                  child: Container(
-                    margin: EdgeInsets.only(top: 70.0),
-                    color: Colors.red,
-                    width: width * 1.2,
-                    height: width / 1.5,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment(-0.8, 0.5),
-                  child: Container(
-                      margin: EdgeInsets.only(top: 53.0),
-                      color: Colors.white,
-                      width: 150,
-                      height: height,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            color: Colors.red[200],
-                            width: 150,
-                            height: 50,
-                            child: OutlineButton(
-                              borderSide: BorderSide.none,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Icon(
-                                    Icons.movie,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text(
-                                    "All",
-                                  )
-                                ],
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                          Container(
-                            color: Colors.red[200],
-                            width: 150,
-                            height: 50,
-                            child: OutlineButton(
-                              borderSide: BorderSide.none,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Icon(
-                                    Icons.title,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text(
-                                    "Titles",
-                                  )
-                                ],
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                          Container(
-                            color: Colors.red[200],
-                            width: 150,
-                            height: 50,
-                            child: OutlineButton(
-                              borderSide: BorderSide.none,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Icon(
-                                    Icons.tv,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text(
-                                    "Episodes",
-                                  )
-                                ],
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                          Container(
-                            color: Colors.red[200],
-                            width: 150,
-                            height: 50,
-                            child: OutlineButton(
-                              borderSide: BorderSide.none,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Icon(
-                                    Icons.recent_actors,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text(
-                                    "Actors",
-                                  )
-                                ],
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                          Container(
-                            color: Colors.red[200],
-                            width: 150,
-                            height: 50,
-                            child: OutlineButton(
-                              borderSide: BorderSide.none,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Icon(
-                                    Icons.image_search,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text(
-                                    "Detail",
-                                  )
-                                ],
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailSearch(),
-                                    ));
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+              );
+            }
+          }),
     ];
   }
 
@@ -286,7 +350,8 @@ class _LandingPageState extends State<LandingPage> {
       hintText = '';
       height = 255.0;
     } else {
-      hintText = 'Search';
+      _focus.unfocus();
+      hintText = '';
       height = 0.0;
     }
     setState(() {});

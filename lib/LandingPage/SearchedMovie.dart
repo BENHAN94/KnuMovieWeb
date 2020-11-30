@@ -71,11 +71,12 @@ class DesktopSearchedMovie extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 1.5,
                 child: GridView.count(
                     crossAxisCount: 3,
-                    children: List.generate(10, (index) {
+                    children: List.generate(snapshot.data.length, (index) {
                       return Hero(
                           tag: 'postImage$index',
                           child: FlatButton(
-                              child: Image.asset('assets/images/knu.png'),
+                              child:
+                                  Image.network(snapshot.data[index].postImage),
                               onPressed: () {
                                 print(index);
                                 Navigator.push(context,

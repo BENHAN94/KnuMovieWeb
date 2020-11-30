@@ -144,7 +144,7 @@ class DesktopSignIn extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => KnuMovie(),
                                 ));
                           },
                           child: Text("Cancel"),
@@ -295,7 +295,7 @@ class TabletSignIn extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => KnuMovie(),
                                 ));
                           },
                           child: Text("Cancel"),
@@ -396,7 +396,7 @@ class MobileSignIn extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyHomePage(),
+                              builder: (context) => KnuMovie(),
                             ));
                       },
                       child: Text("Cancel"),
