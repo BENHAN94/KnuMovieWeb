@@ -79,7 +79,7 @@ class _LandingPageState extends State<LandingPage> {
                                                 SizedBox(width: 10),
                                                 Text(menu.name,
                                                     style: TextStyle(
-                                                        fontSize: 10,
+                                                        fontSize: 12,
                                                         color: Colors.red[300]))
                                               ],
                                             ));
@@ -89,12 +89,16 @@ class _LandingPageState extends State<LandingPage> {
                                     Flexible(
                                       child: TextField(
                                           cursorColor: Colors.red[300],
-                                          focusNode: _focus,
+                                          // focusNode: _focus,
+                                          style:
+                                              TextStyle(color: Colors.red[300]),
                                           controller: _mag,
                                           onSubmitted: _handleSubmitted,
                                           decoration: InputDecoration.collapsed(
-                                            hintText: hintText,
-                                          )),
+                                              hintText: "",
+                                              hintStyle: TextStyle(
+                                                  color: Colors.red[300],
+                                                  fontSize: 13))),
                                     ),
                                     IconButton(
                                         onPressed: () {
@@ -191,25 +195,6 @@ class _LandingPageState extends State<LandingPage> {
         }
       },
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _focus.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    debugPrint("Focus: " + _focus.hasFocus.toString());
-    if (_focus.hasFocus) {
-      hintText = '';
-      height = 255.0;
-    } else {
-      _focus.unfocus();
-      hintText = '';
-      height = 0.0;
-    }
-    setState(() {});
   }
 
   @override
