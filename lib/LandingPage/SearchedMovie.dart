@@ -81,7 +81,8 @@ class DesktopSearchedMovie extends StatelessWidget {
                                 print(index);
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return DetailScreen(text, index);
+                                  return DetailScreen(
+                                      snapshot.data[index].movieId, index);
                                 }));
                               }));
                     })));

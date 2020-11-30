@@ -35,55 +35,69 @@ class DetailScreen extends StatelessWidget {
                     child: Column(children: <Widget>[
                       Navbar(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 40.0),
-                        child: GestureDetector(
-                          child: Center(
-                            child: Hero(
-                                tag: 'postImage$i',
-                                child: Row(children: <Widget>[
-                                  Image.network(snapshot.data.postImage),
-                                  SizedBox(
-                                    height: 150.0,
-                                  ),
-                                  Container(
-                                      color: Colors.white,
-                                      width: MediaQuery.of(context).size.width /
-                                          2.0,
-                                      height:
-                                          MediaQuery.of(context).size.height /
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 40.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Center(
+                              child: Column(children: <Widget>[
+                                Hero(
+                                    tag: 'postImage$i',
+                                    child: Row(children: <Widget>[
+                                      Image.network(snapshot.data.postImage),
+                                      SizedBox(
+                                        height: 150.0,
+                                      ),
+                                      Container(
+                                          color: Colors.white,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
                                               2.0,
-                                      child: Text("Title: " +
-                                          snapshot.data.originalTitle +
-                                          "\n" +
-                                          "Type: " +
-                                          snapshot.data.type +
-                                          "\n" +
-                                          "Director: " +
-                                          snapshot.data.director +
-                                          "\n" +
-                                          "StartYear: " +
-                                          snapshot.data.startYear +
-                                          "\n" +
-                                          "Actor: " +
-                                          snapshot.data.actor.toString() +
-                                          "\n" +
-                                          "Genre: " +
-                                          snapshot.data.genre.toString() +
-                                          "\n" +
-                                          "IsAdult: " +
-                                          snapshot.data.isAdult.toString() +
-                                          "\n" +
-                                          "RunnigTime: " +
-                                          snapshot.data.runningTime.toString() +
-                                          "\n"))
-                                ])),
-                          ),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      )
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              2.0,
+                                          child: Text("Title: " +
+                                              snapshot.data.originalTitle +
+                                              "\n" +
+                                              "Type: " +
+                                              snapshot.data.type +
+                                              "\n" +
+                                              "StartYear: " +
+                                              snapshot.data.startYear +
+                                              "\n" +
+                                              "Actor: " +
+                                              snapshot.data.actor.toString() +
+                                              "\n" +
+                                              "Genre: " +
+                                              snapshot.data.genre.toString() +
+                                              "\n" +
+                                              "IsAdult: " +
+                                              snapshot.data.isAdult.toString() +
+                                              "\n" +
+                                              "RunnigTime: " +
+                                              snapshot.data.runningTime
+                                                  .toString() +
+                                              "\n")),
+                                    ])),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    GridView.count(
+                                      crossAxisCount: 3,
+                                    )
+                                  ],
+                                )
+                              ]),
+                            ),
+                          ))
                     ]));
               }
             }));

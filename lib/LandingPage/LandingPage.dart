@@ -110,59 +110,49 @@ class _LandingPageState extends State<LandingPage> {
                             ],
                           ),
                         ),
-                        Align(
-                            alignment: Alignment(1.0, 1.0),
-                            child: Padding(
-                                padding: EdgeInsets.only(top: 100.0),
-                                child: Container(
-                                    decoration:
-                                        BoxDecoration(color: Colors.white),
-                                    height: MediaQuery.of(context).size.height /
-                                        1.7,
-                                    child: GridView.count(
-                                        crossAxisCount: 3,
-                                        childAspectRatio: 3 / 4,
-                                        children: List.generate(
-                                            snapshot.data.length, (index) {
-                                          return Padding(
-                                              padding:
-                                                  EdgeInsets.only(top: 20.0),
-                                              child: Hero(
-                                                  tag: 'postImage$index',
-                                                  child: RaisedButton(
-                                                      color: Colors.white,
-                                                      splashColor: Colors.white,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                              side: BorderSide
-                                                                  .none),
-                                                      child: Image.network(
-                                                        snapshot.data[index]
-                                                            .postImage,
-                                                      ),
-                                                      onPressed: () {
-                                                        print(text);
+                        Padding(
+                            padding: EdgeInsets.only(top: 70.0),
+                            child: Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height / 1.3,
+                                child: GridView.count(
+                                    crossAxisCount: 3,
+                                    childAspectRatio: 3 / 4.3,
+                                    children: List.generate(
+                                        snapshot.data.length, (index) {
+                                      return Padding(
+                                          padding: EdgeInsets.only(top: 20.0),
+                                          child: Hero(
+                                              tag: 'postImage$index',
+                                              child: RaisedButton(
+                                                  color: Colors.white,
+                                                  splashColor: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      side: BorderSide.none),
+                                                  child: Image.network(
+                                                    snapshot
+                                                        .data[index].postImage,
+                                                  ),
+                                                  onPressed: () {
+                                                    print(text);
 
-                                                        print(snapshot
-                                                            .data[index]
-                                                            .postImage);
-                                                        print(index);
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) {
-                                                          return DetailScreen(
-                                                              snapshot
-                                                                  .data[index]
-                                                                  .movieId,
-                                                              index);
-                                                        }));
-                                                      })));
-                                        }))))),
+                                                    print(snapshot
+                                                        .data[index].postImage);
+                                                    print(index);
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) {
+                                                      return DetailScreen(
+                                                          snapshot.data[index]
+                                                              .movieId,
+                                                          index);
+                                                    }));
+                                                  })));
+                                    })))),
                       ],
                     ),
                   ],
