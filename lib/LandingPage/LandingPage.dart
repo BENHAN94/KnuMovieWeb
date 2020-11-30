@@ -117,12 +117,16 @@ class _LandingPageState extends State<LandingPage> {
                         Padding(
                             padding: EdgeInsets.only(top: 70.0),
                             child: Container(
-                                decoration: BoxDecoration(color: Colors.white),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10.0)
+                                  boxShadow: ,
+                                ),
                                 height:
                                     MediaQuery.of(context).size.height / 1.3,
                                 child: GridView.count(
                                     crossAxisCount: 3,
-                                    childAspectRatio: 3 / 4.3,
+                                    childAspectRatio: 2.5 / 4.3,
                                     children: List.generate(
                                         snapshot.data.length, (index) {
                                       return Padding(

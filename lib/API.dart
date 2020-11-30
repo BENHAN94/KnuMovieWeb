@@ -168,8 +168,10 @@ class API {
     Future<List<Actor>> factors = compute(parseActor, resActor.body);
     var actors = await factors;
     movie.actor = List<String>();
+    movie.actorImage = List<String>();
     for (Actor a in actors) {
       movie.actor.add(a.name);
+      movie.actorImage.add(a.profileImage);
     }
 
     return movie;
