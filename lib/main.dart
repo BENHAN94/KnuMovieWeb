@@ -17,32 +17,37 @@ class KnuMovie extends StatefulWidget {
 class _KnuMovieState extends State<KnuMovie> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Knu Movie',
-        theme: ThemeData(primarySwatch: Colors.red, fontFamily: "Montserrat"),
-        home: Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromRGBO(219, 32, 39, 0.8),
-                    Color.fromRGBO(219, 32, 39, 0.7)
-                  ]),
-            ),
-            child: Column(
-              children: <Widget>[
-                Navbar(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 40.0),
-                  child: LandingPage(),
-                )
-              ],
-            ),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        currentFocus.unfocus();
+      },
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Knu Movie',
+          theme: ThemeData(
+            primarySwatch: Colors.red,
+            fontFamily: "Montserrat",
           ),
-        ));
+          home: Scaffold(
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.red[400], Colors.red[300]]),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Navbar(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: LandingPage(),
+                  )
+                ],
+              ),
+            ),
+          )),
+    );
   }
 }

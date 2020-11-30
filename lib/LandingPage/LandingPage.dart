@@ -6,6 +6,7 @@ import 'package:knumovie/model/movie.dart';
 
 import 'SearchedMovie.dart';
 import 'SelectedMovie.dart';
+import 'package:knumovie/model/item.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -20,7 +21,20 @@ class _LandingPageState extends State<LandingPage> {
   int mid;
   String hintText = '';
   double height = 0.0;
+
+  Item selectedMenu;
+  Item menuItem;
+  List<Item> menuContents = <Item>[
+    const Item('Movies', Icon(Icons.movie, color: Color(0xFFE57373))),
+    const Item('Episodes', Icon(Icons.tv, color: Color(0xFFE57373))),
+    const Item('Actors', Icon(Icons.recent_actors, color: Color(0xFFE57373))),
+    const Item(
+        'Directors', Icon(Icons.recent_actors, color: Color(0xFFE57373))),
+    const Item('Detail', Icon(Icons.image_search, color: Color(0xFFE57373))),
+  ];
+
   List<Widget> pageChildren(double width) {
+    if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
       FutureBuilder(
           future: api.selectMovie(1, title: text),
@@ -33,52 +47,67 @@ class _LandingPageState extends State<LandingPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "KNU Movies",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40.0,
-                          color: Colors.white),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    ),
                     Stack(
                       children: <Widget>[
                         Container(
                           width: width,
-                          height: 55.0,
-                          child: Center(
-                            child: TextField(
-                              focusNode: _focus,
-                              controller: _mag,
-                              onSubmitted: _handleSubmitted,
-                              decoration: InputDecoration(
-                                  hintText: hintText,
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.red, width: 0),
-                                      borderRadius:
-                                          BorderRadius.circular(15.0)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.grey, width: 0),
-                                      borderRadius:
-                                          BorderRadius.circular(15.0)),
-                                  filled: true,
-                                  suffixIcon: IconButton(
-                                    onPressed: () {
-                                      _mag.clear();
-                                    },
-                                    icon: Icon(Icons.clear),
-                                  ),
-                                  prefixIcon: IconButton(
-                                      onPressed: () {
-                                        _handleSubmitted(_mag.text);
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 500,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    color: Colors.white),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(width: 10),
+                                    DropdownButton<Item>(
+                                      value: selectedMenu,
+                                      onChanged: (Item Value) {
+                                        setState(() {
+                                          selectedMenu = Value;
+                                        });
                                       },
-                                      icon: Icon(Icons.search)),
-                                  fillColor: Colors.white),
-                            ),
+                                      items: menuContents.map((Item menu) {
+                                        return DropdownMenuItem<Item>(
+                                            value: menu,
+                                            child: Row(
+                                              children: <Widget>[
+                                                menu.icon,
+                                                SizedBox(width: 10),
+                                                Text(menu.name,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.red[300]))
+                                              ],
+                                            ));
+                                      }).toList(),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Flexible(
+                                      child: TextField(
+                                          cursorColor: Colors.red[300],
+                                          focusNode: _focus,
+                                          controller: _mag,
+                                          onSubmitted: _handleSubmitted,
+                                          decoration: InputDecoration.collapsed(
+                                            hintText: hintText,
+                                          )),
+                                    ),
+                                    IconButton(
+                                        onPressed: () {
+                                          _handleSubmitted(_mag.text);
+                                        },
+                                        icon: Icon(
+                                          Icons.search,
+                                          color: Colors.red[300],
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Align(
@@ -134,170 +163,6 @@ class _LandingPageState extends State<LandingPage> {
                                                         }));
                                                       })));
                                         }))))),
-                        Align(
-                          alignment: Alignment(-0.8, 0.5),
-                          child: Container(
-                              margin: EdgeInsets.only(top: 53.0),
-                              color: Colors.white,
-                              width: 150,
-                              height: height,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.movie,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "All",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.title,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Titles",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.tv,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Episodes",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.recent_actors,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Actors",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                  Container(
-                                    color: Colors.red[200],
-                                    width: 150,
-                                    height: 50,
-                                    child: OutlineButton(
-                                      borderSide: BorderSide.none,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Icon(
-                                            Icons.image_search,
-                                            color: Colors.white,
-                                          ),
-                                          SizedBox(
-                                            width: 30.0,
-                                          ),
-                                          Text(
-                                            "Detail",
-                                          )
-                                        ],
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailSearch(),
-                                            ));
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1,
-                                  ),
-                                ],
-                              )),
-                        ),
                       ],
                     ),
                   ],
