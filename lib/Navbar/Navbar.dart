@@ -40,22 +40,21 @@ class DesktopNavbar extends StatelessWidget {
               ),
               Row(
                 children: <Widget>[
-                  MaterialButton(
+                  RaisedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    MyHomePage()));
+                                builder: (BuildContext context) => KnuMovie()));
                       },
                       child: Text(
                         "Home",
-                        style: TextStyle(color: Colors.white, fontSize: 24.0),
+                        style: TextStyle(color: Colors.white, fontSize: 30.0),
                       )),
                   SizedBox(
                     width: 30,
                   ),
-                  MaterialButton(
+                  RaisedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -70,7 +69,7 @@ class DesktopNavbar extends StatelessWidget {
                   SizedBox(
                     width: 30,
                   ),
-                  MaterialButton(
+                  RaisedButton(
                       onPressed: () {
                         if (true) {
                           Navigator.push(
@@ -129,13 +128,14 @@ class MobileNavbar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    MaterialButton(
+                    RaisedButton(
+                        color: Colors.red[300],
                         onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      MyHomePage()));
+                                      KnuMovie()));
                         },
                         child: Text(
                           "Home",
@@ -144,7 +144,7 @@ class MobileNavbar extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    MaterialButton(
+                    RaisedButton(
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -159,7 +159,7 @@ class MobileNavbar extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    MaterialButton(
+                    RaisedButton(
                         onPressed: () {
                           Navigator.push(
                               context,

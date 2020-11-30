@@ -10,7 +10,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
-  String hintText = 'Search';
+  String hintText = '';
   double height = 0.0;
   List<Widget> pageChildren(double width) {
     return <Widget>[
@@ -28,10 +28,6 @@ class _LandingPageState extends State<LandingPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                "최선을 다해 영화를 한땀한땀 만들었습니다",
-                style: TextStyle(fontSize: 16.0, color: Colors.white),
-              ),
             ),
             Stack(
               children: <Widget>[
@@ -45,8 +41,13 @@ class _LandingPageState extends State<LandingPage> {
                       onSubmitted: _handleSubmitted,
                       decoration: InputDecoration(
                           hintText: hintText,
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 0),
                               borderRadius: BorderRadius.circular(15.0)),
                           filled: true,
                           suffixIcon: IconButton(
@@ -286,7 +287,7 @@ class _LandingPageState extends State<LandingPage> {
       hintText = '';
       height = 255.0;
     } else {
-      hintText = 'Search';
+      hintText = '';
       height = 0.0;
     }
     setState(() {});
