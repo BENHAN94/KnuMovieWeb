@@ -123,7 +123,14 @@ class MobileNavbar extends StatelessWidget {
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  color: Colors.white,
+                  shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 1.0,
+                      color: Colors.black45,
+                    ),
+                  ]),
             ),
             Padding(
                 padding: const EdgeInsets.all(12.0),

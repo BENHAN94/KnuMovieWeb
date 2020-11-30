@@ -20,7 +20,10 @@ class _KnuMovieState extends State<KnuMovie> {
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-        currentFocus.unfocus();
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          currentFocus.focusedChild.unfocus();
+        }
       },
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
