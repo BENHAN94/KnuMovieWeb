@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'package:knumovie/API.dart';
+import 'package:knumovie/model/director.dart';
 import '../API.dart';
 import '../model/movie.dart';
 
@@ -114,10 +115,14 @@ class _DirectImgState extends State<DirectImg> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: api.selectDirector(),
-            builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
-
-      builder: BuildContext(),
-    );
+        future: api.selectDirector(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Director>> snapshot) {
+          if (snapshot.hasData == false) {
+            return Container();
+          } else {
+            return Container();
+          }
+        });
   }
 }
