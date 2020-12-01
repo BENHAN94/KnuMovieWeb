@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
+  rxdart: ^0.22.0
+
 
   http: ^0.12.2
 
