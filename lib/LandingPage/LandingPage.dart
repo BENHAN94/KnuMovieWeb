@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:knumovie/API.dart';
-import 'package:knumovie/LandingPage/DetailSearch.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
 import 'package:knumovie/model/movie.dart';
 
@@ -54,7 +53,7 @@ class _LandingPageState extends State<LandingPage> {
                           child: Column(
                             children: [
                               Container(
-                                width: 500,
+                                width: MediaQuery.of(context).size.width / 2.3,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.0),

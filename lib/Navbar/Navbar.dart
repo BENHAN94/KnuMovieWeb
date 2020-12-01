@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/MyPage/MyPage.dart';
-import 'package:knumovie/LandingPage/SignUp/SignUpPage.dart';
+import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
 
 import '../main.dart';
 
@@ -68,7 +68,7 @@ class DesktopNavbar extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    SignUpPage()));
+                                    SignInPage()));
                       },
                       child: Icon(
                         Icons.login_outlined,
@@ -162,10 +162,16 @@ class MobileNavbar extends StatelessWidget {
                                   builder: (BuildContext context) =>
                                       KnuMovie()));
                         },
-                        child: Text(
-                          "Home",
-                          style: TextStyle(color: Colors.white, fontSize: 17.0),
-                        )),
+                        child: Icon(
+                          Icons.home_rounded,
+                          color: Colors.white,
+                        )
+
+                        /*Text(
+                        "Home",
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
+                      )*/
+                        ),
                     SizedBox(
                       width: 30,
                     ),
@@ -176,12 +182,17 @@ class MobileNavbar extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      SignUpPage()));
+                                      SignInPage()));
                         },
-                        child: Text(
-                          "Sign In/Up",
-                          style: TextStyle(color: Colors.white, fontSize: 17.0),
-                        )),
+                        child: Icon(
+                          Icons.login_outlined,
+                          color: Colors.white,
+                        )
+                        /*Text(
+                        "Sign In/Up",
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
+                      )*/
+                        ),
                     SizedBox(
                       width: 30,
                     ),
@@ -193,10 +204,15 @@ class MobileNavbar extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (BuildContext context) => MyPage()));
                         },
-                        child: Text(
-                          "My Page",
-                          style: TextStyle(color: Colors.white, fontSize: 17.0),
-                        )),
+                        child: Icon(
+                          Icons.account_box,
+                          color: Colors.white,
+                        )
+                        /*Text(
+                        "My Page",
+                        style: TextStyle(color: Colors.white, fontSize: 22.0),
+                      )*/
+                        ),
                     SizedBox(
                       width: 30,
                     ),

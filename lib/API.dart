@@ -283,7 +283,9 @@ class API {
       body: <String, String>{'email_add': email, 'password': password},
     );
     final jsonResponse = json.decode(response.body);
-    Account account = new Account.fromJson(jsonResponse[0]);
+    Account account;
+    if (response.body.length > 2)
+      account = new Account.fromJson(jsonResponse[0]);
     return account;
   }
 

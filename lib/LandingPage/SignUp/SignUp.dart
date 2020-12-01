@@ -32,7 +32,7 @@ class DesktopSignHome extends StatelessWidget {
     return Column(children: <Widget>[
       Navbar(),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
       ),
       Card(
         shape:
@@ -61,6 +61,7 @@ class DesktopSignHome extends StatelessWidget {
                             child: Icon(
                               Icons.assignment,
                               color: Colors.white,
+                              size: 200,
                             )
                             /*Text(
                             "Go ahead \ncreate Account",
@@ -211,7 +212,7 @@ class TabletSignHome extends StatelessWidget {
     return Column(children: <Widget>[
       Navbar(),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
       ),
       Card(
         shape:
@@ -236,7 +237,7 @@ class TabletSignHome extends StatelessWidget {
                           height: 60.0,
                         ),
                         Container(
-                            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            padding: EdgeInsets.only(top: 0.0, bottom: 5.0),
                             child: Icon(
                               Icons.assignment,
                               color: Colors.white,
@@ -276,7 +277,7 @@ class TabletSignHome extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 15.0, left: 40.0, bottom: 70.0),
+                padding: EdgeInsets.only(top: 0.0, left: 40.0, bottom: 70.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -384,7 +385,7 @@ class MobileSignHome extends StatelessWidget {
     return Column(children: <Widget>[
       Navbar(),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
       ),
       Card(
           shape:
@@ -392,7 +393,7 @@ class MobileSignHome extends StatelessWidget {
           elevation: 5.0,
           child: Container(
             padding: EdgeInsets.only(
-                top: 100.0, right: 30.0, left: 130.0, bottom: 100.0),
+                top: 50.0, right: 30.0, left: 130.0, bottom: 100.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
