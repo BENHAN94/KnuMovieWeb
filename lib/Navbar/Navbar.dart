@@ -28,15 +28,15 @@ class DesktopNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     //DesktopNavbar의 전체 padding
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Image.asset(
                 "assets/images/knu.png",
-                width: 150,
-                height: 40,
+                width: 130,
+                height: 35,
               ),
               Row(
                 children: <Widget>[
@@ -48,12 +48,18 @@ class DesktopNavbar extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (BuildContext context) => KnuMovie()));
                       },
-                      child: Text(
+                      child: Icon(
+                        Icons.home_rounded,
+                        color: Colors.white,
+                      )
+
+                      /*Text(
                         "Home",
                         style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )),
+                      )*/
+                      ),
                   SizedBox(
-                    width: 30,
+                    width: 10,
                   ),
                   RaisedButton(
                       color: Colors.red[300],
@@ -64,12 +70,17 @@ class DesktopNavbar extends StatelessWidget {
                                 builder: (BuildContext context) =>
                                     SignUpPage()));
                       },
-                      child: Text(
+                      child: Icon(
+                        Icons.login_outlined,
+                        color: Colors.white,
+                      )
+                      /*Text(
                         "Sign In/Up",
                         style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )),
+                      )*/
+                      ),
                   SizedBox(
-                    width: 30,
+                    width: 10,
                   ),
                   RaisedButton(
                       color: Colors.red[300],
@@ -95,12 +106,17 @@ class DesktopNavbar extends StatelessWidget {
                               ));
                         }
                       },
-                      child: Text(
+                      child: Icon(
+                        Icons.account_box,
+                        color: Colors.white,
+                      )
+                      /*Text(
                         "My Page",
                         style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )),
+                      )*/
+                      ),
                   SizedBox(
-                    width: 30,
+                    width: 10,
                   ),
                 ],
               )

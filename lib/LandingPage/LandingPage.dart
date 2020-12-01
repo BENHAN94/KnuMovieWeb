@@ -17,7 +17,7 @@ class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
-  String text = 'a';
+  String text = 'night';
   int mid;
   String hintText = '';
   double height = 0.0;
@@ -125,8 +125,9 @@ class _LandingPageState extends State<LandingPage> {
                         Padding(
                             padding: EdgeInsets.only(top: 70.0),
                             child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 3),
                                 decoration: BoxDecoration(
-                                  color: Colors.red[200],
+                                  color: Colors.red[300],
                                   borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
@@ -148,7 +149,7 @@ class _LandingPageState extends State<LandingPage> {
                                           child: Hero(
                                               tag: 'postImage$index',
                                               child: RaisedButton(
-                                                  color: Colors.red[100],
+                                                  color: Colors.white30,
                                                   splashColor: Colors.white,
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:

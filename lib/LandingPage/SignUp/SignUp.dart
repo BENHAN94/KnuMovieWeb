@@ -46,7 +46,7 @@ class DesktopSignHome extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width / 4.0,
                 height: MediaQuery.of(context).size.height / 1.7,
-                color: Colors.red[600],
+                color: Colors.red[400],
                 child: Padding(
                   padding: EdgeInsets.only(top: 85.0, right: 50.0, left: 50.0),
                   child: Align(
@@ -57,15 +57,19 @@ class DesktopSignHome extends StatelessWidget {
                           height: 60.0,
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                          child: Text(
+                            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            child: Icon(
+                              Icons.assignment,
+                              color: Colors.white,
+                            )
+                            /*Text(
                             "Go ahead \ncreate Account",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.w900),
-                          ),
-                        ),
+                          ),*/
+                            ),
                         SizedBox(
                           height: 5.0,
                         ),
@@ -84,7 +88,7 @@ class DesktopSignHome extends StatelessWidget {
                           height: 50.0,
                         ),
                         FlatButton(
-                          color: Colors.red[600],
+                          color: Colors.red[400],
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
@@ -111,8 +115,8 @@ class DesktopSignHome extends StatelessWidget {
                     Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
+                          color: Colors.red[400],
+                          fontWeight: FontWeight.w400,
                           fontSize: 35.0,
                           fontFamily: 'Montserrat'),
                     ),
@@ -171,7 +175,7 @@ class DesktopSignHome extends StatelessWidget {
                           height: 20.0,
                         ),
                         FlatButton(
-                          color: Colors.red,
+                          color: Colors.red[400],
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -221,45 +225,39 @@ class TabletSignHome extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width / 3.0,
                 height: MediaQuery.of(context).size.height / 1.7,
-                color: Colors.red[600],
+                color: Colors.red[400],
                 child: Padding(
-                  padding: EdgeInsets.only(top: 85.0, right: 50.0, left: 50.0),
+                  padding: EdgeInsets.only(),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.center,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
                           height: 60.0,
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                          child: Text(
+                            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            child: Icon(
+                              Icons.assignment,
+                              color: Colors.white,
+                              size: 200,
+                            )
+                            /*Text(
                             "Go ahead \ncreate Account",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.w900),
-                          ),
-                        ),
+                          ),*/
+                            ),
                         SizedBox(
                           height: 5.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                          child: Text(
-                            "It should",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
                         ),
                         SizedBox(
                           height: 50.0,
                         ),
-                        FlatButton(
-                          color: Colors.red[600],
+                        RaisedButton(
+                          color: Colors.red[400],
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
@@ -269,7 +267,7 @@ class TabletSignHome extends StatelessWidget {
                           },
                           child: Text(
                             "SignIn",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 30),
                           ),
                         )
                       ],
@@ -286,8 +284,8 @@ class TabletSignHome extends StatelessWidget {
                     Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
+                          color: Colors.red[400],
+                          fontWeight: FontWeight.w400,
                           fontSize: 35.0,
                           fontFamily: 'Montserrat'),
                     ),
@@ -346,7 +344,7 @@ class TabletSignHome extends StatelessWidget {
                           height: 20.0,
                         ),
                         FlatButton(
-                          color: Colors.red,
+                          color: Colors.red[400],
                           onPressed: () {
                             print(_mag.text +
                                 _mag2.text +
@@ -402,8 +400,8 @@ class MobileSignHome extends StatelessWidget {
                 Text(
                   "Sign Up",
                   style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.red[400],
+                      fontWeight: FontWeight.w400,
                       fontSize: 35.0,
                       fontFamily: 'Montserrat'),
                 ),
@@ -459,7 +457,7 @@ class MobileSignHome extends StatelessWidget {
                       },
                       child: Text(
                         "SignIn",
-                        style: TextStyle(color: Colors.red[600]),
+                        style: TextStyle(color: Colors.red[400]),
                       ),
                     ),
                     FlatButton(
@@ -473,7 +471,7 @@ class MobileSignHome extends StatelessWidget {
                       height: 20.0,
                     ),
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.red[400],
                       onPressed: () {
                         Navigator.push(
                             context,
