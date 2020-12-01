@@ -57,6 +57,9 @@ class _DesktopGenderState extends State<DesktopGender> {
               color: Colors.grey,
             ),
           ),
+          SizedBox(
+            width: 10,
+          ),
           MaterialButton(
             child: Text(
               "Male",
@@ -77,12 +80,18 @@ class _DesktopGenderState extends State<DesktopGender> {
               }
             },
           ),
+          SizedBox(
+            width: 10,
+          ),
           CircleAvatar(
             backgroundColor: Colors.red[50],
             child: Icon(
               Icons.face,
               color: Colors.grey,
             ),
+          ),
+          SizedBox(
+            width: 10,
           ),
           MaterialButton(
             child: Text(

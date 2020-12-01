@@ -46,9 +46,10 @@ class SearchedMovies extends StatefulWidget {
 
 class _SearchedMoviesState extends State<SearchedMovies> {
   final api = API();
-
+  var text;
+  Widget _build(AsyncSnapshot snapshot) {}
   @override
-  Widget build(BuildContext context, AsyncSnapshot snapshot) {
+  Widget build(BuildContext context) {
     final movieBloc = MovieProvider.of(context);
     return StreamBuilder(
         stream: movieBloc.results,

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:knumovie/API.dart';
-import 'package:knumovie/LandingPage/DetailSearch.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
 import 'package:knumovie/bloc/movie_provider.dart';
 import 'package:knumovie/model/movie.dart';
@@ -21,7 +20,11 @@ class _LandingPageState extends State<LandingPage> {
   final StreamController<List<Movie>> _streamController = StreamController();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
+<<<<<<< HEAD
   String text = 'toy';
+=======
+  String text = 'night';
+>>>>>>> 3e9b43e6b3b0d44a9c4a92bed94ba7721bbf4268
   int mid;
   int uid;
   String hintText = '';
@@ -58,11 +61,19 @@ class _LandingPageState extends State<LandingPage> {
                           child: Column(
                             children: [
                               Container(
-                                width: 500,
+                                width: MediaQuery.of(context).size.width / 2.3,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(3.0, 3.0),
+                                      blurRadius: 3.0,
+                                      color: Colors.black45,
+                                    )
+                                  ],
+                                ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -139,22 +150,36 @@ class _LandingPageState extends State<LandingPage> {
                         Padding(
                             padding: EdgeInsets.only(top: 70.0),
                             child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 3),
                                 decoration: BoxDecoration(
+<<<<<<< HEAD
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10.0)),
+=======
+                                  color: Colors.red[300],
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(3.0, 3.0),
+                                      blurRadius: 3.0,
+                                      color: Colors.black45,
+                                    )
+                                  ],
+                                ),
+>>>>>>> 3e9b43e6b3b0d44a9c4a92bed94ba7721bbf4268
                                 height:
-                                    MediaQuery.of(context).size.height / 1.3,
+                                    MediaQuery.of(context).size.height / 1.4,
                                 child: GridView.count(
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 2.5 / 4.3,
+                                    crossAxisCount: 4,
+                                    childAspectRatio: 3 / 4.3,
                                     children: List.generate(
                                         snapshot.data.length, (index) {
                                       return Padding(
-                                          padding: EdgeInsets.only(top: 20.0),
+                                          padding: EdgeInsets.all(5.0),
                                           child: Hero(
                                               tag: 'postImage$index',
                                               child: RaisedButton(
-                                                  color: Colors.white,
+                                                  color: Colors.white30,
                                                   splashColor: Colors.white,
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:
