@@ -1,23 +1,46 @@
 # KnuMovieWeb
 COMP322 project
-
-import 'package:flutter/material.dart';
-import 'movie_bloc.dart';
-import '../API.dart';
-
-class MovieProvider extends InheritedWidget {
-  // 자식 위젯에서 접근하기 위함
-  final MovieBloc movieBloc;
-
+class _KnuMovieState extends State<KnuMovie> {
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
-
-  static MovieBloc of(BuildContext context) =>
-      (context.dependOnInheritedWidgetOfExactType<MovieProvider>())
-          .movieBloc; // static으로 해서 1번만 초기화하도록 함.
-
-  MovieProvider({Key key, MovieBloc movieBloc, Widget child})
-      : this.movieBloc = movieBloc ?? MovieBloc(API()),
-        super(child: child, key: key);
+  Widget build(BuildContext context) {
+    return MovieProvider(
+      movieBloc: MovieBloc(API()),
+      child: GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            currentFocus.focusedChild.unfocus();
+          }
+        },
+        child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Knu Movie',
+            theme: ThemeData(
+              primarySwatch: generateMaterialColor(Pallette.primary),
+              fontFamily: "Montserrat",
+            ),
+            home: Scaffold(
+              body: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.red[400], Colors.red[300]]),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Navbar(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0),
+                      child: LandingPage(),
+                    )
+                  ],
+                ),
+              ),
+            )),
+      ),
+    );
+  }
 }
 
