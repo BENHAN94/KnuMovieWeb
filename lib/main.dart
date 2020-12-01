@@ -4,8 +4,6 @@ import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:knumovie/bloc/movie_bloc.dart';
-import 'package:knumovie/bloc/movie_provider.dart';
 
 MaterialColor generateMaterialColor(Color color) {
   return MaterialColor(color.value, {
@@ -55,43 +53,40 @@ class KnuMovie extends StatefulWidget {
 class _KnuMovieState extends State<KnuMovie> {
   @override
   Widget build(BuildContext context) {
-    return MovieProvider(
-      movieBloc: MovieBloc(API()),
-      child: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
-            currentFocus.focusedChild.unfocus();
-          }
-        },
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Knu Movie',
-            theme: ThemeData(
-              primarySwatch: generateMaterialColor(Pallette.primary),
-              fontFamily: "Montserrat",
-            ),
-            home: Scaffold(
-              body: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.red[400], Colors.red[300]]),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Navbar(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: LandingPage(),
-                    )
-                  ],
-                ),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          currentFocus.focusedChild.unfocus();
+        }
+      },
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Knu Movie',
+          theme: ThemeData(
+            primarySwatch: generateMaterialColor(Pallette.primary),
+            fontFamily: "Montserrat",
+          ),
+          home: Scaffold(
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.red[400], Colors.red[300]]),
               ),
-            )),
-      ),
+              child: Column(
+                children: <Widget>[
+                  Navbar(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: LandingPage(),
+                  )
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

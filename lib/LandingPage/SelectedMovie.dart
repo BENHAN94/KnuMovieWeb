@@ -159,9 +159,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          SearchedMovie(),
+                                                                  builder: (context) =>
+                                                                      SearchedMovie(
+                                                                          text),
                                                                 ));
                                                           }
 

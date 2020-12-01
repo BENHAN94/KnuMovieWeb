@@ -51,13 +51,7 @@ class DesktopNavbar extends StatelessWidget {
                       child: Icon(
                         Icons.home_rounded,
                         color: Colors.white,
-                      )
-
-                      /*Text(
-                        "Home",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                      ),
+                      )),
                   SizedBox(
                     width: 10,
                   ),
@@ -73,12 +67,7 @@ class DesktopNavbar extends StatelessWidget {
                       child: Icon(
                         Icons.login_outlined,
                         color: Colors.white,
-                      )
-                      /*Text(
-                        "Sign In/Up",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                      ),
+                      )),
                   SizedBox(
                     width: 10,
                   ),
@@ -109,12 +98,7 @@ class DesktopNavbar extends StatelessWidget {
                       child: Icon(
                         Icons.account_box,
                         color: Colors.white,
-                      )
-                      /*Text(
-                        "My Page",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                      ),
+                      )),
                   SizedBox(
                     width: 10,
                   ),
@@ -165,13 +149,7 @@ class MobileNavbar extends StatelessWidget {
                         child: Icon(
                           Icons.home_rounded,
                           color: Colors.white,
-                        )
-
-                        /*Text(
-                        "Home",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                        ),
+                        )),
                     SizedBox(
                       width: 30,
                     ),
@@ -187,32 +165,39 @@ class MobileNavbar extends StatelessWidget {
                         child: Icon(
                           Icons.login_outlined,
                           color: Colors.white,
-                        )
-                        /*Text(
-                        "Sign In/Up",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                        ),
+                        )),
                     SizedBox(
                       width: 30,
                     ),
                     RaisedButton(
                         color: Colors.red[300],
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => MyPage()));
+                          if (true) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        MyPage()));
+                          } else {
+                            showDialog(
+                                context: context,
+                                child: AlertDialog(
+                                  title: Text("로그인 하셨나요?"),
+                                  actions: <Widget>[
+                                    RaisedButton(
+                                      child: Text("Close"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    )
+                                  ],
+                                ));
+                          }
                         },
                         child: Icon(
                           Icons.account_box,
                           color: Colors.white,
-                        )
-                        /*Text(
-                        "My Page",
-                        style: TextStyle(color: Colors.white, fontSize: 22.0),
-                      )*/
-                        ),
+                        )),
                     SizedBox(
                       width: 30,
                     ),
