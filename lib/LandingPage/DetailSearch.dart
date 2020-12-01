@@ -230,7 +230,7 @@ class _DesktopDetailSearchsState extends State<DesktopDetailSearchs> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
     _mag.clear();
   }
@@ -413,7 +413,7 @@ class _TabletDetailSearchsState extends State<TabletDetailSearchs> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
   }
 }
@@ -618,7 +618,7 @@ class _MobileDetailSearchsState extends State<MobileDetailSearchs> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
     _mag.clear();
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/SignUp/gender.dart';
 import 'package:knumovie/LandingPage/SignUp/input_field.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
-import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
 
 import 'AccountrRate.dart';
 

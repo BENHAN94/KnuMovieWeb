@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:knumovie/API.dart';
 import 'package:knumovie/LandingPage/DetailSearch.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
+import 'package:knumovie/bloc/movie_provider.dart';
 import 'package:knumovie/model/movie.dart';
 
 import 'SearchedMovie.dart';
@@ -15,13 +18,14 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
+  final StreamController<List<Movie>> _streamController = StreamController();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
-  String text = 'ani';
+  String text = 'toy';
   int mid;
+  int uid;
   String hintText = '';
   double height = 0.0;
-
   Item selectedMenu;
   Item menuItem;
   List<Item> menuContents = <Item>[
@@ -32,13 +36,13 @@ class _LandingPageState extends State<LandingPage> {
         'Directors', Icon(Icons.recent_actors, color: Color(0xFFE57373))),
     const Item('Detail', Icon(Icons.image_search, color: Color(0xFFE57373))),
   ];
-
   List<Widget> pageChildren(double width) {
     if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
       FutureBuilder(
-          future: api.selectMovie(1, title: text),
+          future: api.selectMovie(2, title: text),
           builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
+            final movieBloc = MovieProvider.of(context);
             if (snapshot.hasData == false) {
               return Container();
             } else {
@@ -66,6 +70,24 @@ class _LandingPageState extends State<LandingPage> {
                                     DropdownButton<Item>(
                                       value: selectedMenu,
                                       onChanged: (Item Value) {
+                                        if (Value.name == 'Movies') {
+                                          print(Value.name);
+                                          movieBloc.getMovies(uid, _mag.text);
+                                        } else if (Value.name == 'Episodes') {
+                                          movieBloc.getEpisodes(uid, _mag.text);
+                                          // } else if (Value.name == 'Actors') {
+                                          //   movieBloc.getActors(_mag.text);
+                                          // } else if (Value.name == 'Directors') {
+                                          //   movieBloc.getDirectors(_mag.text);
+                                        } else if (Value.name == 'Detail') {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailSearch(),
+                                              ));
+                                        }
+
                                         setState(() {
                                           selectedMenu = Value;
                                         });
@@ -145,20 +167,19 @@ class _LandingPageState extends State<LandingPage> {
                                                   ),
                                                   onPressed: () {
                                                     print(text);
-
-                                                    print(snapshot
-                                                        .data[index].postImage);
                                                     print(index);
                                                     Navigator.push(context,
                                                         MaterialPageRoute(
                                                             builder: (context) {
                                                       return DetailScreen(
+                                                          1,
                                                           snapshot.data[index]
                                                               .movieId,
-                                                          index);
+                                                          index,
+                                                          text);
                                                     }));
                                                   })));
-                                    })))),
+                                    }))))
                       ],
                     ),
                   ],

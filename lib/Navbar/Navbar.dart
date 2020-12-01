@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/MyPage/MyPage.dart';
+import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
 import 'package:knumovie/LandingPage/SignUp/SignUpPage.dart';
 
 import '../main.dart';
@@ -62,7 +63,7 @@ class DesktopNavbar extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    SignUpPage()));
+                                    SignInPage()));
                       },
                       child: Text(
                         "Sign In/Up",
@@ -160,7 +161,7 @@ class MobileNavbar extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      SignUpPage()));
+                                      SignInPage()));
                         },
                         child: Text(
                           "Sign In/Up",

@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/SelectedMovie.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'package:knumovie/API.dart';
+import 'package:knumovie/bloc/movie_provider.dart';
 import '../API.dart';
 import '../model/movie.dart';
 
-class SearchedMovie extends StatelessWidget {
-  var text;
-  SearchedMovie(String str) {
-    text = str;
-  }
+class SearchedMovie extends StatefulWidget {
+  @override
+  _SearchedMovieState createState() => _SearchedMovieState();
+}
 
+class _SearchedMovieState extends State<SearchedMovie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class SearchedMovie extends StatelessWidget {
           Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
-            child: SearchedMovies(text),
+            child: SearchedMovies(),
           )
         ],
       ),
@@ -38,39 +39,28 @@ class SearchedMovie extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
-class SearchedMovies extends StatelessWidget {
-  var str;
-  SearchedMovies(text) {
-    str = text;
-  }
-
+class SearchedMovies extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return DesktopSearchedMovie(str);
-  }
+  _SearchedMoviesState createState() => _SearchedMoviesState();
 }
 
-// ignore: must_be_immutable
-class DesktopSearchedMovie extends StatelessWidget {
-  var text;
-  DesktopSearchedMovie(str) {
-    text = str;
-  }
+class _SearchedMoviesState extends State<SearchedMovies> {
   final api = API();
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: api.selectMovie(1, title: text),
-        builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
-          if (snapshot.hasData == false) {
-            return Container();
+  Widget build(BuildContext context, AsyncSnapshot snapshot) {
+    final movieBloc = MovieProvider.of(context);
+    return StreamBuilder(
+        stream: movieBloc.results,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Text("No data");
           } else {
             return Container(
                 height: MediaQuery.of(context).size.height / 1.5,
                 child: GridView.count(
                     crossAxisCount: 3,
+                    childAspectRatio: 3 / 4,
                     children: List.generate(snapshot.data.length, (index) {
                       return Hero(
                           tag: 'postImage$index',
@@ -82,7 +72,10 @@ class DesktopSearchedMovie extends StatelessWidget {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return DetailScreen(
-                                      snapshot.data[index].movieId, index);
+                                      1,
+                                      snapshot.data[index].movieId,
+                                      index,
+                                      text);
                                 }));
                               }));
                     })));

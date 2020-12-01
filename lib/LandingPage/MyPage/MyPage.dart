@@ -5,6 +5,8 @@ import 'package:knumovie/Navbar/Navbar.dart';
 import 'MyMovie.dart';
 
 class MyPage extends StatelessWidget {
+  int userId;
+  int movieId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class MyPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 100.0),
           ),
-          SelectPage(),
+          SelectPage(userId, movieId),
         ],
       ),
     ));
@@ -32,17 +34,24 @@ class MyPage extends StatelessWidget {
 }
 
 class SelectPage extends StatelessWidget {
+  int uid;
+  int mid;
+
+  SelectPage(int userId, int movieId) {
+    uid = userId;
+    mid = movieId;
+  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       //제약조건에 따라 내용물 결정
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1200) {
-          return DesktopSelectPage();
+          return DesktopSelectPage(uid, mid);
         } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
-          return TabletSelectPage();
+          return TabletSelectPage(uid, mid);
         } else {
-          return MobileSelectPage();
+          return MobileSelectPage(uid, mid);
         }
       },
     );
@@ -50,6 +59,12 @@ class SelectPage extends StatelessWidget {
 }
 
 class DesktopSelectPage extends StatelessWidget {
+  int movieId;
+  int userId;
+  DesktopSelectPage(int uid, int mid) {
+    userId = uid;
+    movieId = mid;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,7 +95,8 @@ class DesktopSelectPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => MyMovie()));
+                        builder: (BuildContext context) =>
+                            MyMovie(1, movieId)));
               },
             ),
           ]),
@@ -143,6 +159,12 @@ class DesktopSelectPage extends StatelessWidget {
 }
 
 class TabletSelectPage extends StatelessWidget {
+  int movieId;
+  int userId;
+  TabletSelectPage(int uid, int mid) {
+    userId = uid;
+    movieId = mid;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -173,7 +195,8 @@ class TabletSelectPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => MyMovie()));
+                        builder: (BuildContext context) =>
+                            MyMovie(1, movieId)));
               },
             ),
           ]),
@@ -236,6 +259,12 @@ class TabletSelectPage extends StatelessWidget {
 }
 
 class MobileSelectPage extends StatelessWidget {
+  int movieId;
+  int userId;
+  MobileSelectPage(int uid, int mid) {
+    userId = uid;
+    movieId = mid;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -266,7 +295,8 @@ class MobileSelectPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => MyMovie()));
+                        builder: (BuildContext context) =>
+                            MyMovie(1, movieId)));
               },
             ),
           ]),

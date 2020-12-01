@@ -462,7 +462,7 @@ class _DesktopAdminFunctionsState extends State<DesktopAdminFunctions> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
     _mag.clear();
   }
@@ -876,7 +876,7 @@ class _TabletAdminFunctionsState extends State<TabletAdminFunctions> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
     _mag.clear();
   }
@@ -1246,7 +1246,7 @@ class _MobileAdminFunctionsState extends State<MobileAdminFunctions> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
+          builder: (context) => SearchedMovie(),
         ));
     _mag.clear();
   }
