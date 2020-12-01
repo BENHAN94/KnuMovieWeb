@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:knumovie/API.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
@@ -16,9 +18,14 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
+  final StreamController<List<Movie>> _streamController = StreamController();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
+<<<<<<< HEAD
   String text;
+=======
+  String text = 'toy';
+>>>>>>> a21e5a7bc6faa6d4758e570a0d8a2802b2545bdd
   int mid;
   String hintText = '';
   double height = 0.0;
@@ -43,8 +50,13 @@ class _LandingPageState extends State<LandingPage> {
       bloc.fetchList(User.uid.toString(), title: text);
     if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
+<<<<<<< HEAD
+      FutureBuilder(
+          future: api.selectMovie(2, title: text),
+=======
       StreamBuilder(
           stream: bloc.selectedList,
+>>>>>>> 0de82bd18c12f69756f2997e5dbc79c8cf8f8194
           builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
             if (snapshot.hasData == false) {
               return Container();
@@ -61,19 +73,11 @@ class _LandingPageState extends State<LandingPage> {
                           child: Column(
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width / 2.3,
+                                width: 500,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      offset: Offset(3.0, 3.0),
-                                      blurRadius: 3.0,
-                                      color: Colors.black45,
-                                    )
-                                  ],
-                                ),
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    color: Colors.white),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -81,6 +85,7 @@ class _LandingPageState extends State<LandingPage> {
                                     DropdownButton<Item>(
                                       value: selectedMenu,
                                       onChanged: (Item Value) {
+                                        if (Value.name == 'Movies') {}
                                         setState(() {
                                           selectedMenu = Value;
                                         });
@@ -129,60 +134,65 @@ class _LandingPageState extends State<LandingPage> {
                             ],
                           ),
                         ),
-                        Padding(
-                            padding: EdgeInsets.only(top: 70.0),
-                            child: Container(
-                                margin: EdgeInsets.symmetric(vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: Colors.red[300],
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      offset: Offset(3.0, 3.0),
-                                      blurRadius: 3.0,
-                                      color: Colors.black45,
-                                    )
-                                  ],
-                                ),
-                                height:
-                                    MediaQuery.of(context).size.height / 1.4,
-                                child: GridView.count(
-                                    crossAxisCount: 4,
-                                    childAspectRatio: 3 / 4.3,
-                                    children: List.generate(
-                                        snapshot.data.length, (index) {
-                                      return Padding(
-                                          padding: EdgeInsets.all(5.0),
-                                          child: Hero(
-                                              tag: 'postImage$index',
-                                              child: RaisedButton(
-                                                  color: Colors.white30,
-                                                  splashColor: Colors.white,
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      side: BorderSide.none),
-                                                  child: Image.network(
-                                                    snapshot
-                                                        .data[index].postImage,
-                                                  ),
-                                                  onPressed: () {
-                                                    print(text);
-
-                                                    print(snapshot
-                                                        .data[index].postImage);
-                                                    print(index);
-                                                    Navigator.push(context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) {
-                                                      return DetailScreen(
+                        StreamBuilder<List<Movie>>(
+                            stream: _streamController.stream,
+                            initialData: snapshot.data,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<Movie>> snapsho) {
+                              return Padding(
+                                  padding: EdgeInsets.only(top: 70.0),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              1.3,
+                                      child: GridView.count(
+                                          crossAxisCount: 3,
+                                          childAspectRatio: 2.5 / 4.3,
+                                          children: List.generate(
+                                              snapsho.data.length, (index) {
+                                            return Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 20.0),
+                                                child: Hero(
+                                                    tag: 'postImage$index',
+                                                    child: RaisedButton(
+                                                        color: Colors.white,
+                                                        splashColor:
+                                                            Colors.white,
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
+                                                            side: BorderSide
+                                                                .none),
+                                                        child: Image.network(
                                                           snapshot.data[index]
-                                                              .movieId,
-                                                          index);
-                                                    }));
-                                                  })));
-                                    })))),
+                                                              .postImage,
+                                                        ),
+                                                        onPressed: () {
+                                                          print(text);
+                                                          print(index);
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) {
+                                                            return DetailScreen(
+                                                                1,
+                                                                snapshot
+                                                                    .data[index]
+                                                                    .movieId,
+                                                                index,
+                                                                text);
+                                                          }));
+                                                        })));
+                                          }))));
+                            })
                       ],
                     ),
                   ],

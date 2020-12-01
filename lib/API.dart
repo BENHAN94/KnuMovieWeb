@@ -327,6 +327,7 @@ class API {
 
   // 평가하기
   Future<bool> rating(String uid, String mid, String rating) async {
+    print(uid + mid + rating);
     final updateURL = _baseURL + "rating";
     http.Response response = await http.post(
       updateURL,

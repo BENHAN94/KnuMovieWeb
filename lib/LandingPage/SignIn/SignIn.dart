@@ -222,6 +222,41 @@ class DesktopSignIn extends StatelessWidget {
 class TabletSignIn extends StatelessWidget {
   final TextEditingController _mag = new TextEditingController();
   final TextEditingController _mag2 = new TextEditingController();
+
+  final account = Account();
+  final api = API();
+  final scaffoldKey = SignInPage.scaffoldKey;
+  Future<bool> signIn(String email, String password) async {
+    final fac = api.signin(email, password);
+    final ac = await fac;
+    if (ac != null) {
+      User.email = ac.email;
+      User.lname = ac.lastName;
+      User.fname = ac.firstName;
+      User.sid = ac.sid;
+      if (ac.isAdmin != null) {
+        User.isAdmin = ac.isAdmin;
+      }
+      if (ac.address != null) {
+        User.address = ac.address;
+      }
+      if (ac.birthday != null) {
+        User.birthday = ac.birthday;
+      }
+      if (ac.job != null) {
+        User.job = ac.job;
+      }
+      if (ac.phone != null) {
+        User.phone = ac.phone;
+      }
+      if (ac.sex != null) {
+        User.sex = ac.sex;
+      }
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -335,8 +370,28 @@ class TabletSignIn extends StatelessWidget {
                         ),
                         FlatButton(
                           color: Colors.red[300],
-                          onPressed: () {
-                            print(_mag.text + _mag2.text);
+                          onPressed: () async {
+                            final fl = signIn(_mag.text, _mag2.text);
+                            final isSuccess = await fl;
+                            if (isSuccess) {
+                              final snackbar = SnackBar(
+                                  content: Text(
+                                '로그인 완료!',
+                              ));
+                              Scaffold.of(context).showSnackBar(snackbar);
+                              Future.delayed(const Duration(milliseconds: 1000),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => KnuMovie(),
+                                    ));
+                              });
+                            } else {
+                              final snackbar = SnackBar(
+                                  content: Text('이메일 또는 비밀번호를 다시 확인해주세요.'));
+                              Scaffold.of(context).showSnackBar(snackbar);
+                            }
                           },
                           child: Text(
                             "SignIn",
@@ -359,6 +414,40 @@ class TabletSignIn extends StatelessWidget {
 class MobileSignIn extends StatelessWidget {
   final TextEditingController _mag = new TextEditingController();
   final TextEditingController _mag2 = new TextEditingController();
+  final account = Account();
+  final api = API();
+  final scaffoldKey = SignInPage.scaffoldKey;
+  Future<bool> signIn(String email, String password) async {
+    final fac = api.signin(email, password);
+    final ac = await fac;
+    if (ac != null) {
+      User.email = ac.email;
+      User.lname = ac.lastName;
+      User.fname = ac.firstName;
+      User.sid = ac.sid;
+      if (ac.isAdmin != null) {
+        User.isAdmin = ac.isAdmin;
+      }
+      if (ac.address != null) {
+        User.address = ac.address;
+      }
+      if (ac.birthday != null) {
+        User.birthday = ac.birthday;
+      }
+      if (ac.job != null) {
+        User.job = ac.job;
+      }
+      if (ac.phone != null) {
+        User.phone = ac.phone;
+      }
+      if (ac.sex != null) {
+        User.sex = ac.sex;
+      }
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -440,7 +529,29 @@ class MobileSignIn extends StatelessWidget {
                     ),
                     FlatButton(
                       color: Colors.red[300],
-                      onPressed: () {},
+                      onPressed: () async {
+                        final fl = signIn(_mag.text, _mag2.text);
+                        final isSuccess = await fl;
+                        if (isSuccess) {
+                          final snackbar = SnackBar(
+                              content: Text(
+                            '로그인 완료!',
+                          ));
+                          Scaffold.of(context).showSnackBar(snackbar);
+                          Future.delayed(const Duration(milliseconds: 1000),
+                              () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => KnuMovie(),
+                                ));
+                          });
+                        } else {
+                          final snackbar = SnackBar(
+                              content: Text('이메일 또는 비밀번호를 다시 확인해주세요.'));
+                          Scaffold.of(context).showSnackBar(snackbar);
+                        }
+                      },
                       child: Text(
                         "SignIn",
                         style: TextStyle(color: Colors.white),

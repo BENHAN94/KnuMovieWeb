@@ -62,7 +62,7 @@ class DesktopSearchedMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: api.selectMovie(1, title: text),
+        future: api.selectMovie(2, title: text),
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData == false) {
             return Container();
@@ -71,6 +71,7 @@ class DesktopSearchedMovie extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 1.5,
                 child: GridView.count(
                     crossAxisCount: 3,
+                    childAspectRatio: 3 / 4,
                     children: List.generate(snapshot.data.length, (index) {
                       return Hero(
                           tag: 'postImage$index',
@@ -82,7 +83,10 @@ class DesktopSearchedMovie extends StatelessWidget {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return DetailScreen(
-                                      snapshot.data[index].movieId, index);
+                                      1,
+                                      snapshot.data[index].movieId,
+                                      index,
+                                      text);
                                 }));
                               }));
                     })));

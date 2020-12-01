@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knumovie/API.dart';
 import 'package:knumovie/LandingPage/LandingPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
 import 'dart:math';
@@ -57,7 +58,7 @@ class _KnuMovieState extends State<KnuMovie> {
         FocusScopeNode currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus &&
             currentFocus.focusedChild != null) {
-          currentFocus.focusedChild.nextFocus();
+          currentFocus.focusedChild.unfocus();
         }
       },
       child: MaterialApp(
