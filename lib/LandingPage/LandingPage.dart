@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:knumovie/API.dart';
 import 'package:knumovie/LandingPage/SearchedMovie.dart';
+import 'package:knumovie/bloc/select_bloc.dart';
 import 'package:knumovie/model/movie.dart';
 
+import '../User.dart';
 import 'SearchedMovie.dart';
 import 'SelectedMovie.dart';
 import 'package:knumovie/model/item.dart';
@@ -24,6 +26,8 @@ class _LandingPageState extends State<LandingPage> {
   String hintText = '';
   double height = 0.0;
 
+  final bloc = SelectBloc();
+
   Item selectedMenu;
   Item menuItem;
   List<Item> menuContents = <Item>[
@@ -36,10 +40,16 @@ class _LandingPageState extends State<LandingPage> {
   ];
 
   List<Widget> pageChildren(double width) {
+    bloc.fetchList(User.uid.toString(), title: text);
     if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
+<<<<<<< HEAD
       FutureBuilder(
           future: api.selectMovie(2, title: text),
+=======
+      StreamBuilder(
+          stream: bloc.selectedList,
+>>>>>>> 0de82bd18c12f69756f2997e5dbc79c8cf8f8194
           builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
             if (snapshot.hasData == false) {
               return Container();
@@ -225,11 +235,19 @@ class _LandingPageState extends State<LandingPage> {
   void _handleSubmitted(String text) {
     print(_mag.toString());
     text = _mag.text;
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SearchedMovie(text),
-        ));
+    text = text.toLowerCase();
+    if (selectedMenu.name == 'Movies')
+      bloc.fetchList(User.uid.toString(), title: text);
+    else if (selectedMenu.name == 'Episodes')
+      bloc.fetchList(User.uid.toString(), title: text, type: "tvseries");
+    else if (selectedMenu.name == 'Actors')
+      bloc.fetchList(User.uid.toString(), actor: text);
+    else if (selectedMenu.name == 'Directors')
+      bloc.fetchList(
+        User.uid.toString(),
+        director: text,
+      );
+    else {}
     _mag.clear();
   }
 }
