@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Gender extends StatelessWidget {
-  var gender = '';
-  Gender({this.gender});
+  static var gender = '';
+  Gender();
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       //제약조건에 따라 내용물 결정
       builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200) {
-          return DesktopGender(this.gender);
-        } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
-          return DesktopGender(this.gender);
+        if (constraints.maxWidth > 800) {
+          return DesktopGender();
         } else {
-          return MobileGender(this.gender);
+          return MobileGender();
         }
       },
     );
@@ -21,17 +19,21 @@ class Gender extends StatelessWidget {
 }
 
 class DesktopGender extends StatefulWidget {
-  DesktopGender(String gender);
-
+  DesktopGender();
+  static bool isMobile = isMobile;
   @override
   _DesktopGenderState createState() => _DesktopGenderState();
 }
 
 class _DesktopGenderState extends State<DesktopGender> {
-  int selected = 0;
   int red1 = 0;
   int red2 = 0;
-  var gen = '';
+  int maleSelected = 0;
+  int femaleSelected = 0;
+  Color colorTextInMaleButton = Colors.black54;
+  Color colorTextInFemaleButton = Colors.black54;
+  Color colorMaleButton = Colors.white;
+  Color colorFemaleButton = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _DesktopGenderState extends State<DesktopGender> {
             child: Text(
               "Gender",
               textAlign: TextAlign.left,
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.red[300]),
             ),
           ),
           SizedBox(
@@ -58,30 +60,37 @@ class _DesktopGenderState extends State<DesktopGender> {
             ),
           ),
           SizedBox(
-            width: 10,
+            width: 20,
           ),
           MaterialButton(
             child: Text(
               "Male",
               textAlign: TextAlign.left,
+              style: TextStyle(color: colorTextInMaleButton),
             ),
-            color: Color(red1),
+            color: colorMaleButton,
             onPressed: () {
-              if (selected == 0) {
-                selected = 1;
-                gen = "Male";
-                red2 = 0;
-                red1 = 0xFFF44336;
-                setState(() {});
+              if (maleSelected == 0) {
+                maleSelected = 1;
+                femaleSelected = 0;
+                Gender.gender = "Male";
+                colorMaleButton = Colors.red[300];
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.white;
               } else {
-                selected = 0;
-                red1 = 0;
-                setState(() {});
+                maleSelected = 0;
+                femaleSelected = 0;
+                colorMaleButton = Colors.white;
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.black54;
               }
+              setState(() {});
             },
           ),
           SizedBox(
-            width: 10,
+            width: 20,
           ),
           CircleAvatar(
             backgroundColor: Colors.red[50],
@@ -91,26 +100,34 @@ class _DesktopGenderState extends State<DesktopGender> {
             ),
           ),
           SizedBox(
-            width: 10,
+            width: 20,
           ),
           MaterialButton(
             child: Text(
               "Female",
               textAlign: TextAlign.left,
+              style: TextStyle(color: colorTextInFemaleButton),
             ),
-            color: Color(red2),
+            color: colorFemaleButton,
             onPressed: () {
-              if (selected == 0) {
-                selected = 1;
-                red1 = 0;
-                red2 = 0xFFF44336;
-                gen = "Female";
-                setState(() {});
+              if (femaleSelected == 0) {
+                maleSelected = 0;
+                femaleSelected = 1;
+                Gender.gender = "Female";
+                colorFemaleButton = Colors.red[300];
+                colorMaleButton = Colors.white;
+                colorTextInMaleButton = Colors.black54;
+                colorTextInFemaleButton = Colors.white;
               } else {
-                selected = 0;
-                red2 = 0;
-                setState(() {});
+                Gender.gender = null;
+                maleSelected = 0;
+                femaleSelected = 0;
+                colorMaleButton = Colors.white;
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.black54;
               }
+              setState(() {});
             },
           ),
         ],
@@ -120,23 +137,28 @@ class _DesktopGenderState extends State<DesktopGender> {
 }
 
 class MobileGender extends StatefulWidget {
-  MobileGender(String gender);
-
+  MobileGender();
+  static bool isMobile = isMobile;
   @override
   _MobileGenderState createState() => _MobileGenderState();
 }
 
 class _MobileGenderState extends State<MobileGender> {
-  int selected = 0;
+  int maleSelected = 0;
+  int femaleSelected = 0;
   int red1 = 0;
   int red2 = 0;
+  Color colorTextInMaleButton = Colors.black54;
+  Color colorTextInFemaleButton = Colors.black54;
+  Color colorMaleButton = Colors.white;
+  Color colorFemaleButton = Colors.white;
+
   var gen = '';
-  _MobileGenderState({this.gen});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      int red = 0;
       return Row(
         children: <Widget>[
           Container(
@@ -144,52 +166,68 @@ class _MobileGenderState extends State<MobileGender> {
             child: Text(
               "Gender",
               textAlign: TextAlign.left,
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.red[300]),
             ),
           ),
           SizedBox(
-            width: 20.0,
+            width: 40.0,
           ),
           MaterialButton(
             child: Text(
               "Male",
               textAlign: TextAlign.left,
+              style: TextStyle(color: colorTextInMaleButton),
             ),
-            color: Color(red1),
+            color: colorMaleButton,
             onPressed: () {
-              if (selected == 0) {
-                selected = 1;
-                red2 = 0;
-                red1 = 0xFFF44336;
+              if (maleSelected == 0) {
+                maleSelected = 1;
+                femaleSelected = 0;
                 gen = "Male";
-
-                setState(() {});
+                colorMaleButton = Colors.red[300];
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.white;
               } else {
-                selected = 0;
-                red1 = 0;
-                setState(() {});
+                maleSelected = 0;
+                femaleSelected = 0;
+                colorMaleButton = Colors.white;
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.black54;
               }
+              setState(() {});
             },
+          ),
+          SizedBox(
+            width: 20,
           ),
           MaterialButton(
             child: Text(
               "Female",
               textAlign: TextAlign.left,
+              style: TextStyle(color: colorTextInFemaleButton),
             ),
-            color: Color(red2),
+            color: colorFemaleButton,
             onPressed: () {
-              if (selected == 0) {
-                selected = 1;
-                red1 = 0;
-                red2 = 0xFFF44336;
+              if (femaleSelected == 0) {
+                maleSelected = 0;
+                femaleSelected = 1;
                 gen = "Female";
-
-                setState(() {});
+                colorFemaleButton = Colors.red[300];
+                colorMaleButton = Colors.white;
+                colorTextInMaleButton = Colors.black54;
+                colorTextInFemaleButton = Colors.white;
               } else {
-                selected = 0;
-                red2 = 0;
-                setState(() {});
+                gen = null;
+                maleSelected = 0;
+                femaleSelected = 0;
+                colorMaleButton = Colors.white;
+                colorFemaleButton = Colors.white;
+                colorTextInFemaleButton = Colors.black54;
+                colorTextInMaleButton = Colors.black54;
               }
+              setState(() {});
             },
           ),
         ],

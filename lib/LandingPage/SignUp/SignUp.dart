@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:knumovie/LandingPage/SignIn/SignInPage.dart';
 import 'package:knumovie/Navbar/Navbar.dart';
+import 'package:knumovie/main.dart';
+import '../../API.dart';
+import '../../User.dart';
 import 'gender.dart';
 import 'input_field.dart';
 
@@ -11,9 +14,9 @@ class SignHome extends StatelessWidget {
       //제약조건에 따라 내용물 결정
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1400) {
-          return DesktopSignHome();
+          return DesktopSignHome(4.0, 1.3);
         } else if (constraints.maxWidth > 800 && constraints.maxWidth < 1400) {
-          return TabletSignHome();
+          return DesktopSignHome(3.0, 1.1);
         } else {
           return MobileSignHome();
         }
@@ -23,39 +26,78 @@ class SignHome extends StatelessWidget {
 }
 
 class DesktopSignHome extends StatelessWidget {
-  final TextEditingController _mag = new TextEditingController();
-  final TextEditingController _mag2 = new TextEditingController();
-  final TextEditingController _mag3 = new TextEditingController();
-  final TextEditingController _mag4 = new TextEditingController();
+  double width = 1.0;
+  double width1 = 1.0;
+  final api = API();
+  DesktopSignHome(double w, double w1) {
+    width = w;
+    width1 = w1;
+  }
+  final TextEditingController _emailInput = new TextEditingController();
+  final TextEditingController _pwdInput = new TextEditingController();
+  final TextEditingController _birthdayInput = new TextEditingController();
+  final TextEditingController _fnameInput = new TextEditingController();
+  final TextEditingController _lnameInput = new TextEditingController();
+
+  Future<bool> signUp(
+      String email, String password, String fname, String lname) async {
+    final fac = api.signup(email, password, fname, lname);
+    final ac = await fac;
+    if (ac != null) {
+      User.email = ac.email;
+      User.lname = ac.lastName;
+      User.fname = ac.firstName;
+      User.sid = ac.sid;
+      if (ac.isAdmin != null) {
+        User.isAdmin = ac.isAdmin;
+      }
+      if (ac.address != null) {
+        User.address = ac.address;
+      }
+      if (ac.birthday != null) {
+        User.birthday = ac.birthday;
+      }
+      if (ac.job != null) {
+        User.job = ac.job;
+      }
+      if (ac.phone != null) {
+        User.phone = ac.phone;
+      }
+      if (ac.sex != null) {
+        User.sex = ac.sex;
+      }
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Navbar(),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
       ),
       Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
         elevation: 5.0,
         child: Container(
-          width: MediaQuery.of(context).size.width / 1.3,
-          height: MediaQuery.of(context).size.height / 1.7,
+          width: MediaQuery.of(context).size.width / width1,
+          height: MediaQuery.of(context).size.height / 1.3,
           child: Row(
             children: <Widget>[
               Container(
-                width: MediaQuery.of(context).size.width / 4.0,
-                height: MediaQuery.of(context).size.height / 1.7,
-                color: Colors.red[400],
+                width: MediaQuery.of(context).size.width / width,
+                height: MediaQuery.of(context).size.height / 1.3,
+                color: Colors.red[300],
                 child: Padding(
-                  padding: EdgeInsets.only(top: 85.0, right: 50.0, left: 50.0),
+                  padding: EdgeInsets.only(top: 0.0, right: 50.0, left: 50.0),
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.center,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(
-                          height: 60.0,
-                        ),
                         Container(
                             padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                             child: Icon(
@@ -74,22 +116,11 @@ class DesktopSignHome extends StatelessWidget {
                         SizedBox(
                           height: 5.0,
                         ),
-                        Container(
-                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                          child: Text(
-                            "It should",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
                         SizedBox(
                           height: 50.0,
                         ),
                         FlatButton(
-                          color: Colors.red[400],
+                          color: Colors.white,
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
@@ -99,7 +130,8 @@ class DesktopSignHome extends StatelessWidget {
                           },
                           child: Text(
                             "SignIn",
-                            style: TextStyle(color: Colors.white),
+                            style:
+                                TextStyle(color: Colors.red[300], fontSize: 25),
                           ),
                         )
                       ],
@@ -108,26 +140,26 @@ class DesktopSignHome extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 15.0, left: 40.0, bottom: 70.0),
+                padding: EdgeInsets.only(left: 40.0, bottom: 50.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.red[400],
-                          fontWeight: FontWeight.w400,
+                          color: Colors.red[300],
+                          fontWeight: FontWeight.w300,
                           fontSize: 35.0,
                           fontFamily: 'Montserrat'),
                     ),
                     const SizedBox(
-                      height: 21.0,
+                      height: 50.0,
                     ),
                     InputField(
-                      label: "Username",
-                      content: "username",
-                      text: _mag,
+                      label: "Email",
+                      content: "anything@site.com",
+                      text: _emailInput,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -136,26 +168,34 @@ class DesktopSignHome extends StatelessWidget {
                     SizedBox(
                       height: 20.0,
                     ),
-                    InputField(
-                      label: "Date of birth",
-                      content: "03-04-2000",
-                      text: _mag2,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    InputField(
-                      label: "Email",
-                      content: "anything@site.com",
-                      text: _mag3,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    InputField(
+                    InputPasswordField(
                       label: "Password",
                       content: "********",
-                      text: _mag4,
+                      text: _pwdInput,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    InputField(
+                      label: "Firstname",
+                      content: "firstname",
+                      text: _fnameInput,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    InputField(
+                      label: "Lastname",
+                      content: "lastname",
+                      text: _lnameInput,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    InputField(
+                      label: "Date of birth",
+                      content: "1994-02-12",
+                      text: _birthdayInput,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -170,192 +210,50 @@ class DesktopSignHome extends StatelessWidget {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text("Cancel"),
+                          child: Text("Cancel",
+                              style: TextStyle(color: Colors.black54)),
                         ),
                         SizedBox(
                           height: 20.0,
                         ),
                         FlatButton(
-                          color: Colors.red[400],
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInPage(),
+                          color: Colors.red[300],
+                          onPressed: () async {
+                            if (_emailInput.text != null &&
+                                _pwdInput.text != null &&
+                                _birthdayInput.text != null &&
+                                _fnameInput.text != null &&
+                                _lnameInput.text != null) {
+                              final fsuc = signUp(
+                                  _emailInput.text,
+                                  _pwdInput.text,
+                                  _fnameInput.text,
+                                  _lnameInput.text);
+                              final success = await fsuc;
+                              if (success) {
+                                api.updateAccount(
+                                    User.email, 'sex', Gender.gender);
+                                final snackbar = SnackBar(
+                                    content: Text(
+                                  '회원가입 완료!',
                                 ));
-                          },
-                          child: Text(
-                            "CreateAccount",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      )
-    ]);
-  }
-}
-
-class TabletSignHome extends StatelessWidget {
-  final TextEditingController _mag = new TextEditingController();
-  final TextEditingController _mag2 = new TextEditingController();
-  final TextEditingController _mag3 = new TextEditingController();
-  final TextEditingController _mag4 = new TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Navbar(),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
-      ),
-      Card(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
-        elevation: 5.0,
-        child: Container(
-          width: MediaQuery.of(context).size.width / 1.1,
-          height: MediaQuery.of(context).size.height / 1.7,
-          child: Row(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width / 3.0,
-                height: MediaQuery.of(context).size.height / 1.7,
-                color: Colors.red[400],
-                child: Padding(
-                  padding: EdgeInsets.only(),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 60.0,
-                        ),
-                        Container(
-                            padding: EdgeInsets.only(top: 0.0, bottom: 5.0),
-                            child: Icon(
-                              Icons.assignment,
-                              color: Colors.white,
-                              size: 200,
-                            )
-                            /*Text(
-                            "Go ahead \ncreate Account",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.w900),
-                          ),*/
-                            ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        SizedBox(
-                          height: 50.0,
-                        ),
-                        RaisedButton(
-                          color: Colors.red[400],
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return SignInPage();
-                              },
-                            ));
-                          },
-                          child: Text(
-                            "SignIn",
-                            style: TextStyle(color: Colors.white, fontSize: 30),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 0.0, left: 40.0, bottom: 70.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: Colors.red[400],
-                          fontWeight: FontWeight.w400,
-                          fontSize: 35.0,
-                          fontFamily: 'Montserrat'),
-                    ),
-                    const SizedBox(
-                      height: 21.0,
-                    ),
-                    InputField(
-                      label: "Username",
-                      content: "username",
-                      text: _mag,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Gender(),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    InputField(
-                      label: "Date of birth",
-                      content: "03-04-2000",
-                      text: _mag2,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    InputField(
-                      label: "Email",
-                      content: "anything@site.com",
-                      text: _mag3,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    InputField(
-                      label: "Password",
-                      content: "********",
-                      text: _mag4,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 130.0,
-                        ),
-                        FlatButton(
-                          color: Colors.white,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text("Cancel"),
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        FlatButton(
-                          color: Colors.red[400],
-                          onPressed: () {
-                            print(_mag.text +
-                                _mag2.text +
-                                _mag3.text +
-                                _mag4.text);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInPage(),
+                                Scaffold.of(context).showSnackBar(snackbar);
+                                Future.delayed(
+                                    const Duration(milliseconds: 1000), () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => KnuMovie(),
+                                      ));
+                                });
+                              } else {
+                                final snackbar = SnackBar(
+                                    content: Text(
+                                  '잘못 입력하셨습니다. 다시 입력해주세요.',
                                 ));
+                                Scaffold.of(context).showSnackBar(snackbar);
+                              }
+                            }
                           },
                           child: Text(
                             "CreateAccount",
@@ -376,16 +274,50 @@ class TabletSignHome extends StatelessWidget {
 }
 
 class MobileSignHome extends StatelessWidget {
-  final TextEditingController _mag = new TextEditingController();
-  final TextEditingController _mag2 = new TextEditingController();
-  final TextEditingController _mag3 = new TextEditingController();
-  final TextEditingController _mag4 = new TextEditingController();
+  final TextEditingController _emailInput = new TextEditingController();
+  final TextEditingController _pwdInput = new TextEditingController();
+  final TextEditingController _birthdayInput = new TextEditingController();
+  final TextEditingController _fnameInput = new TextEditingController();
+  final TextEditingController _lnameInput = new TextEditingController();
+  final api = API();
+  Future<bool> signUp(
+      String email, String password, String fname, String lname) async {
+    final fac = api.signup(email, password, fname, lname);
+    final ac = await fac;
+    if (ac != null) {
+      User.email = ac.email;
+      User.lname = ac.lastName;
+      User.fname = ac.firstName;
+      User.sid = ac.sid;
+      if (ac.isAdmin != null) {
+        User.isAdmin = ac.isAdmin;
+      }
+      if (ac.address != null) {
+        User.address = ac.address;
+      }
+      if (ac.birthday != null) {
+        User.birthday = ac.birthday;
+      }
+      if (ac.job != null) {
+        User.job = ac.job;
+      }
+      if (ac.phone != null) {
+        User.phone = ac.phone;
+      }
+      if (ac.sex != null) {
+        User.sex = ac.sex;
+      }
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Navbar(),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
       ),
       Card(
           shape:
@@ -393,7 +325,7 @@ class MobileSignHome extends StatelessWidget {
           elevation: 5.0,
           child: Container(
             padding: EdgeInsets.only(
-                top: 50.0, right: 30.0, left: 130.0, bottom: 100.0),
+                top: 100.0, right: 30.0, left: 130.0, bottom: 100.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -410,9 +342,9 @@ class MobileSignHome extends StatelessWidget {
                   height: 21.0,
                 ),
                 InputField(
-                  label: "Username",
-                  content: "username",
-                  text: _mag,
+                  label: "Email",
+                  content: "anything@site.com",
+                  text: _emailInput,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -421,26 +353,34 @@ class MobileSignHome extends StatelessWidget {
                 SizedBox(
                   height: 20.0,
                 ),
-                InputField(
-                  label: "Date of birth",
-                  content: "03-04-2000",
-                  text: _mag2,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                InputField(
-                  label: "Email",
-                  content: "anything@site.com",
-                  text: _mag3,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                InputField(
+                InputPasswordField(
                   label: "Password",
                   content: "********",
-                  text: _mag4,
+                  text: _pwdInput,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                InputField(
+                  label: "Firstname",
+                  content: "firstname",
+                  text: _fnameInput,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                InputField(
+                  label: "Lastname",
+                  content: "lastname",
+                  text: _lnameInput,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                InputField(
+                  label: "Date of birth",
+                  content: "1994-02-12",
+                  text: _birthdayInput,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -458,21 +398,56 @@ class MobileSignHome extends StatelessWidget {
                       },
                       child: Text(
                         "SignIn",
-                        style: TextStyle(color: Colors.red[400]),
+                        style: TextStyle(color: Colors.red[300]),
                       ),
                     ),
+                    SizedBox(width: 25),
                     FlatButton(
                       color: Colors.white,
-                      onPressed: () {
-                        Navigator.pop(context);
+                      onPressed: () async {
+                        if (_emailInput.text != null &&
+                            _pwdInput.text != null &&
+                            _birthdayInput.text != null &&
+                            _fnameInput.text != null &&
+                            _lnameInput.text != null) {
+                          final fsuc = signUp(_emailInput.text, _pwdInput.text,
+                              _fnameInput.text, _lnameInput.text);
+                          final success = await fsuc;
+                          if (success) {
+                            api.updateAccount(User.email, 'sex', Gender.gender);
+                            final snackbar = SnackBar(
+                                content: Text(
+                              '회원가입 완료!',
+                            ));
+                            print(User.fname);
+                            Scaffold.of(context).showSnackBar(snackbar);
+                            Future.delayed(const Duration(milliseconds: 1000),
+                                () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => KnuMovie(),
+                                  ));
+                            });
+                          } else {
+                            final snackbar = SnackBar(
+                                content: Text(
+                              '잘못 입력하셨습니다. 다시 입력해주세요.',
+                            ));
+                            Scaffold.of(context).showSnackBar(snackbar);
+                          }
+                        }
                       },
-                      child: Text("Cancel"),
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(color: Colors.black54),
+                      ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      width: 0.0,
                     ),
                     FlatButton(
-                      color: Colors.red[400],
+                      color: Colors.red[300],
                       onPressed: () {
                         Navigator.push(
                             context,

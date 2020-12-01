@@ -18,7 +18,7 @@ class _LandingPageState extends State<LandingPage> {
   FocusNode _focus = new FocusNode();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
-  String text = 'night';
+  String text;
   int mid;
   String hintText = '';
   double height = 0.0;
@@ -37,7 +37,10 @@ class _LandingPageState extends State<LandingPage> {
   ];
 
   List<Widget> pageChildren(double width) {
-    bloc.fetchList(User.uid.toString(), title: text);
+    if (User.uid == null)
+      bloc.fetchList("1", title: text);
+    else
+      bloc.fetchList(User.uid.toString(), title: text);
     if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
       StreamBuilder(

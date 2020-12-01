@@ -12,7 +12,7 @@ class Aggrenment extends StatelessWidget {
             child: Text(
               "Agree to terms and conditions",
               textAlign: TextAlign.left,
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.red[300]),
             ),
           ),
           SizedBox(
