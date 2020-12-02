@@ -21,11 +21,7 @@ class _LandingPageState extends State<LandingPage> {
   final StreamController<List<Movie>> _streamController = StreamController();
   final TextEditingController _mag = new TextEditingController();
   final api = API();
-<<<<<<< HEAD
   String text;
-=======
-  String text = 'toy';
->>>>>>> a21e5a7bc6faa6d4758e570a0d8a2802b2545bdd
   int mid;
   String hintText = '';
   double height = 0.0;
@@ -50,13 +46,8 @@ class _LandingPageState extends State<LandingPage> {
       bloc.fetchList(User.uid.toString(), title: text);
     if (selectedMenu == null) selectedMenu = menuContents[0];
     return <Widget>[
-<<<<<<< HEAD
       FutureBuilder(
           future: api.selectMovie(2, title: text),
-=======
-      StreamBuilder(
-          stream: bloc.selectedList,
->>>>>>> 0de82bd18c12f69756f2997e5dbc79c8cf8f8194
           builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
             if (snapshot.hasData == false) {
               return Container();
